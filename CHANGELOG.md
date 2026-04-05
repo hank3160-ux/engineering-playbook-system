@@ -11,6 +11,7 @@ Commit format follows [Conventional Commits](https://www.conventionalcommits.org
 
 ### Fix
 
+- update nav and fix relative links
 - change nav home to index.md
 - resolve CI failures for v2.0.0
 
