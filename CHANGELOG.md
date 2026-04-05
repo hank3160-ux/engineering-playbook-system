@@ -11,6 +11,7 @@ Commit format follows [Conventional Commits](https://www.conventionalcommits.org
 
 ### Fix
 
+- move contributing.md to contributing/index.md for correct directory URL
 - add navigation.indexes to mkdocs
 - force clean gh-pages redeploy to fix CONTRIBUTING case sensitivity
 - replace all .md links in README with MkDocs site URLs
