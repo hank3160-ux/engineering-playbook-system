@@ -34,6 +34,12 @@ nav:
       - Observability & Security: playbook/03-observability-and-security.md
       - Technical Decisions: playbook/04-technical-decisions.md
       - Reliability Checklist: playbook/05-reliability-checklist.md
+  - ADR:
+      - ADR-001 Layered Architecture: playbook/adr/ADR-001-layered-architecture.md
+      - ADR-002 Async Database: playbook/adr/ADR-002-async-database.md
+      - ADR-003 CI/CD Design: playbook/adr/ADR-003-cicd-design.md
+  - Guides:
+      - How to Extend: docs/how-to-extend.md
   - Contributing: CONTRIBUTING.md
 
 markdown_extensions:

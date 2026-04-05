@@ -1,6 +1,6 @@
 # Engineering Playbook System
 
-> v1.4.0 (Stable) — 以 GitHub 為核心的單一事實來源（SSOT）平台，統一管理開發規範、流程自動化與可驗證的 MVP 示範。
+> v1.5.0 (Stable) — 以 GitHub 為核心的單一事實來源（SSOT）平台，統一管理開發規範、流程自動化與可驗證的 MVP 示範。
 
 📖 **文件站**：[https://hank3160-ux.github.io/engineering-playbook-system](https://hank3160-ux.github.io/engineering-playbook-system)
 
@@ -9,7 +9,7 @@
 ![Python](https://img.shields.io/badge/python-3.11-blue?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688?logo=fastapi&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Version](https://img.shields.io/badge/version-v1.4.0-indigo)
+![Version](https://img.shields.io/badge/version-v1.5.0-indigo)
 
 ---
 
@@ -195,6 +195,7 @@ GitHub Actions 在每次 push to main 時自動執行 pytest，並將 MkDocs 文
 
 | 版本 | 說明 |
 |------|------|
+| v1.5.0 | 純粹工程架構：pre-commit、ADR x3、dev-setup.sh、Item CRUD demo、擴充指南 |
 | v1.4.0 | 生產級可靠性：Request ID Middleware、異步 DB 測試、Dev Container、Reliability Playbook |
 | v1.3.0 | 極致自動化：cookiecutter、SQLAlchemy async DB 層、技術架構白皮書 |
 | v1.2.0 | 實戰驗證：url_checker 服務、mypy 型別檢查、完整 type hints、badges |

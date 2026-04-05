@@ -12,7 +12,7 @@ from fastapi import FastAPI, Request, Response
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
-from demo.api.url_checker import router as url_checker_router
+from demo.api.items import router as items_router
 from demo.context import get_request_id, request_id_var
 from demo.logger import get_logger
 
@@ -143,4 +143,4 @@ async def health_check() -> HealthResponse:
 # Routers
 # ---------------------------------------------------------------------------
 
-app.include_router(url_checker_router)
+app.include_router(items_router)

@@ -1,0 +1,46 @@
+repos:
+  # 基礎檔案檢查
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ["--maxkb=500"]
+      - id: no-commit-to-branch
+        args: ["--branch", "main"]
+
+  # Ruff — linting + formatting
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.1
+    hooks:
+      - id: ruff
+        args: ["--fix"]
+      - id: ruff-format
+
+  # Mypy — 靜態型別檢查
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.9.0
+    hooks:
+      - id: mypy
+        additional_dependencies:
+          - fastapi==0.110.0
+          - pydantic==2.6.4
+          - pydantic-settings==2.2.1
+          - sqlalchemy[asyncio]==2.0.29
+        args: ["--ignore-missing-imports", "--strict"]
+        exclude: "^(demo/tests|template/tests)/"
+
+  # 自訂 secret 掃描
+  - repo: local
+    hooks:
+      - id: check-secrets
+        name: Check for secrets
+        entry: bash scripts/check-secrets.sh
+        language: system
+        pass_filenames: false
+        stages: [commit]
