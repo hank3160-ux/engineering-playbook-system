@@ -10,7 +10,7 @@ theme:
 
 nav:
   - Home: index.md
-  - Playbook:
+  - Playbook: 
       - 總覽: playbook/index.md
       - 標準流程: playbook/01-standard-workflow.md
       - 架構品質: playbook/02-architecture-and-quality.md
