@@ -9,7 +9,7 @@
 [![Python](https://img.shields.io/badge/python-3.11-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![codecov](https://img.shields.io/badge/coverage-tracked-brightgreen?logo=codecov)](https://github.com/hank3160-ux/engineering-playbook-system)
-[![Version](https://img.shields.io/badge/version-v2.0.0-6366f1)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-v2.0.0-6366f1)](CHANGELOG/)
 [![License](https://img.shields.io/badge/license-MIT-22c55e)](LICENSE)
 
 ---
@@ -85,9 +85,9 @@ engineering-playbook-system/
 
 | 路徑 | 說明 |
 |------|------|
-| [`playbook/01-standard-workflow.md`](playbook/01-standard-workflow.md) | 專案命名準則、Git Commit 規範、環境安全指引 |
-| [`playbook/02-architecture-and-quality.md`](playbook/02-architecture-and-quality.md) | 架構規範、錯誤處理機制、日誌追蹤標準 |
-| [`playbook/03-observability-and-security.md`](playbook/03-observability-and-security.md) | 可觀測性、SLI/SLO、金鑰管理 SOP、資安防禦清單 |
+| [`playbook/01-standard-workflow`](playbook/01-standard-workflow/) | 專案命名準則、Git Commit 規範、環境安全指引 |
+| [`playbook/02-architecture-and-quality`](playbook/02-architecture-and-quality/) | 架構規範、錯誤處理機制、日誌追蹤標準 |
+| [`playbook/03-observability-and-security`](playbook/03-observability-and-security/) | 可觀測性、SLI/SLO、金鑰管理 SOP、資安防禦清單 |
 | [`demo/`](demo/) | FastAPI MVP — ProcessTimeMiddleware、Exception Handler、pytest |
 | [`template/`](template/) | 標準 Python 專案模板（三層架構，可直接複製） |
 | [`scripts/check-secrets.sh`](scripts/check-secrets.sh) | Pre-commit 敏感資料掃描腳本 |
@@ -116,7 +116,7 @@ curl -i http://localhost:8000/health
 # Response Headers 含 X-Request-ID 與 X-Process-Time-Ms
 ```
 
-想了解如何擴充架構，請參考 [How to Extend](how-to-extend.md/)。
+想了解如何擴充架構，請參考 [How to Extend](how-to-extend/)。
 
 ---
 
@@ -214,7 +214,7 @@ GitHub Actions 在每次 push to main 時自動執行 pytest，並將 MkDocs 文
 
 ## Contributing
 
-所有變更請遵循 [`playbook/01-standard-workflow.md`](playbook/01-standard-workflow.md) 中定義的規範，並透過 Pull Request 提交。
+所有變更請遵循 [`playbook/01-standard-workflow`](playbook/01-standard-workflow/) 中定義的規範，並透過 Pull Request 提交。
 
 ---
 

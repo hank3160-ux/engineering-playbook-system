@@ -1,4 +1,5 @@
 site_name: Engineering Playbook System
+use_directory_urls: true
 theme:
   name: material
   palette:
