@@ -1,11 +1,13 @@
 """
-Engineering Playbook System — FastAPI MVP (v1.4.0)
-新增：Request ID Middleware、Trace ID 自動注入 logger
+Engineering Playbook System — FastAPI MVP (v2.0.0)
+Middleware: Request ID + Process Time
+Lifecycle:  lifespan context manager (replaces deprecated on_event)
 """
 
 import time
 import uuid
-from collections.abc import Awaitable, Callable
+from collections.abc import AsyncGenerator, Awaitable, Callable
+from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 
 from fastapi import FastAPI, Request, Response
@@ -18,17 +20,30 @@ from demo.logger import get_logger
 
 logger = get_logger(__name__)
 
-app = FastAPI(
-    title="Engineering Playbook System",
-    description="工程標準系統 MVP — SSOT Demo",
-    version="1.4.0",
-)
-
 _start_time = time.time()
 
 
 # ---------------------------------------------------------------------------
-# Middleware 1 — Request ID：生成並注入 contextvars，寫入 Response Header
+# Lifespan — 現代化生命週期管理（取代已棄用的 on_event）
+# ---------------------------------------------------------------------------
+
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+    logger.info("Service starting up — Engineering Playbook System v2.0.0")
+    yield
+    logger.info("Service shutting down")
+
+
+app = FastAPI(
+    title="Engineering Playbook System",
+    description="工程標準系統 MVP — SSOT Demo",
+    version="2.0.0",
+    lifespan=lifespan,
+)
+
+
+# ---------------------------------------------------------------------------
+# Middleware 1 — Request ID
 # ---------------------------------------------------------------------------
 
 @app.middleware("http")
@@ -36,20 +51,18 @@ async def request_id_middleware(
     request: Request,
     call_next: Callable[[Request], Awaitable[Response]],
 ) -> Response:
-    # 優先使用 client 傳入的 X-Request-ID，否則自動生成
     request_id = request.headers.get("X-Request-ID") or str(uuid.uuid4())
     token = request_id_var.set(request_id)
     try:
         response = await call_next(request)
     finally:
         request_id_var.reset(token)
-
     response.headers["X-Request-ID"] = request_id
     return response
 
 
 # ---------------------------------------------------------------------------
-# Middleware 2 — Process Time：記錄耗時並寫入 Response Header
+# Middleware 2 — Process Time
 # ---------------------------------------------------------------------------
 
 @app.middleware("http")
@@ -60,7 +73,6 @@ async def process_time_middleware(
     start = time.perf_counter()
     response = await call_next(request)
     duration_ms = round((time.perf_counter() - start) * 1000, 2)
-
     response.headers["X-Process-Time-Ms"] = str(duration_ms)
     logger.info(
         "Request completed | method=%s | path=%s | status=%d | duration_ms=%.2f",
@@ -95,20 +107,6 @@ async def global_exception_handler(request: Request, exc: Exception) -> JSONResp
 
 
 # ---------------------------------------------------------------------------
-# Lifecycle
-# ---------------------------------------------------------------------------
-
-@app.on_event("startup")
-async def on_startup() -> None:
-    logger.info("Service starting up — Engineering Playbook System v1.4.0")
-
-
-@app.on_event("shutdown")
-async def on_shutdown() -> None:
-    logger.info("Service shutting down")
-
-
-# ---------------------------------------------------------------------------
 # Routes
 # ---------------------------------------------------------------------------
 
@@ -130,10 +128,9 @@ async def health_check() -> HealthResponse:
     uptime = round(time.time() - _start_time, 2)
     now = datetime.now(timezone.utc).isoformat()
     logger.info("Health check requested | uptime=%.2fs", uptime)
-
     return HealthResponse(
         status="ok",
-        version="1.4.0",
+        version="2.0.0",
         uptime_seconds=uptime,
         timestamp=now,
     )
