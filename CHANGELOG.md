@@ -11,6 +11,10 @@ Commit format follows [Conventional Commits](https://www.conventionalcommits.org
 
 ### Fix
 
+- add missing index files and cleanup mkdocs config
+- update navigation and file structure for docs
+- final path correction for how-to-extend
+- correct how-to-extend link path in index.md
 - update nav and fix relative links
 - change nav home to index.md
 - resolve CI failures for v2.0.0
