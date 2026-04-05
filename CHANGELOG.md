@@ -7,6 +7,13 @@ Commit format follows [Conventional Commits](https://www.conventionalcommits.org
 
 ---
 
+## Unreleased
+
+### Fix
+
+- change nav home to index.md
+- resolve CI failures for v2.0.0
+
 ## v2.0.0 (2026-04-05) — Golden Release
 
 ### feat
