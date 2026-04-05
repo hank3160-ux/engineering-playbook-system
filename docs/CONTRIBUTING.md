@@ -50,8 +50,8 @@ git checkout -b feat/your-feature-name
 
 ### 2. 開發
 
-- 遵循 [`playbook/01-standard-workflow.md`](playbook/01-standard-workflow.md) 的命名與 commit 規範
-- 架構決策參考 [`playbook/02-architecture-and-quality.md`](playbook/02-architecture-and-quality.md)
+- 遵循 [`playbook/01-standard-workflow`](../playbook/01-standard-workflow/) 的命名與 commit 規範
+- 架構決策參考 [`playbook/02-architecture-and-quality`](../playbook/02-architecture-and-quality/)
 
 ### 3. 本地驗證
 
