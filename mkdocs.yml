@@ -8,6 +8,7 @@ theme:
   features:
     - navigation.tabs
     - navigation.sections
+    - navigation.indexes
 
 nav:
   - Home: index.md
