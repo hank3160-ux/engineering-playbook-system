@@ -18,7 +18,6 @@ def create_item(payload: ItemCreate) -> ItemResponse:
     _next_id += 1
     return item
 
-
 def get_item(item_id: int) -> ItemResponse | None:
     return _store.get(item_id)
 

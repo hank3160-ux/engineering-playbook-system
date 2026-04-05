@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+    # 只在非 bot commit 時執行，避免無限循環
+    if: "!contains(github.event.head_commit.message, 'bump:')"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install commitizen
+        run: pip install commitizen==3.21.3
+
+      - name: Generate CHANGELOG
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          cz changelog --dry-run > /tmp/changelog_preview.md || true
+          cz changelog || echo "No new commits to changelog"
+
+      - name: Commit CHANGELOG if changed
+        run: |
+          if git diff --quiet CHANGELOG.md 2>/dev/null; then
+            echo "No CHANGELOG changes to commit"
+          else
+            git add CHANGELOG.md
+            git commit -m "docs: update CHANGELOG.md [skip ci]"
+            git push
+          fi

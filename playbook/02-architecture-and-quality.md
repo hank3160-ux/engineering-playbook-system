@@ -33,6 +33,54 @@ your-service-name/
 | `config/` | 環境變數讀取與驗證 | 不放預設 secret |
 | `tests/` | 單元測試、整合測試 | 不依賴外部服務（使用 mock） |
 
+### 請求生命週期時序圖
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant C as Client
+    participant MW as Middleware<br/>(Request ID + Process Time)
+    participant API as API Layer<br/>(Router)
+    participant SVC as Service Layer<br/>(Business Logic)
+    participant DB as Database<br/>(SQLAlchemy Async)
+
+    C->>MW: HTTP Request
+    MW->>MW: 生成 X-Request-ID<br/>記錄開始時間
+    MW->>API: 轉發請求
+
+    API->>API: 驗證輸入 (Pydantic)
+    API->>SVC: 呼叫 service 函式
+
+    SVC->>DB: 異步 SQL 查詢
+    DB-->>SVC: 回傳結果
+
+    SVC-->>API: 回傳 domain object
+    API-->>MW: 回傳 Response
+
+    MW->>MW: 計算 duration_ms<br/>注入 X-Process-Time-Ms
+    MW-->>C: HTTP Response<br/>(含 X-Request-ID, X-Process-Time-Ms)
+```
+
+### 錯誤路徑時序圖
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant C as Client
+    participant MW as Middleware
+    participant API as API Layer
+    participant EH as Exception Handler
+
+    C->>MW: HTTP Request
+    MW->>API: 轉發請求
+    API->>API: 業務邏輯拋出例外
+
+    API-->>EH: 未捕捉 Exception
+    EH->>EH: logger.error()<br/>記錄 request_id + path
+    EH-->>MW: JSONResponse(500)
+    MW-->>C: {"error": "internal_server_error",<br/>"request_id": "..."}
+```
+
 ---
 
 ## 2. 錯誤處理機制

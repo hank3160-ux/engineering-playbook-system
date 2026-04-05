@@ -1,6 +1,6 @@
 [project]
 name = "engineering-playbook-system"
-version = "1.0.0"
+version = "1.6.0"
 description = "工程標準系統 — SSOT 平台"
 requires-python = ">=3.11"
 
@@ -53,3 +53,18 @@ python_version = "3.11"
 strict = true
 ignore_missing_imports = true
 exclude = ["template/tests", "demo/tests"]
+
+# ---------------------------------------------------------------------------
+# Commitizen — 互動式 Conventional Commits
+# ---------------------------------------------------------------------------
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "1.6.0"
+version_files = [
+    "pyproject.toml:version",
+]
+tag_format = "v$version"
+update_changelog_on_bump = true
+changelog_file = "CHANGELOG.md"
+changelog_incremental = true

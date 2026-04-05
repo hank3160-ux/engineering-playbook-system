@@ -21,6 +21,7 @@ def reset_store() -> None:
     """每個測試前重置 in-memory store，確保測試隔離。"""
     item_service._store.clear()
     item_service._next_id = 1
+    yield  # type: ignore[misc]
 
 
 def test_create_item() -> None:

@@ -8,6 +8,7 @@
 
 import pytest
 import pytest_asyncio
+from collections.abc import AsyncGenerator
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
 # 使用 SQLite in-memory，測試環境與生產完全隔離
@@ -15,7 +16,7 @@ TEST_DATABASE_URL = "sqlite+aiosqlite:///:memory:"
 
 
 @pytest_asyncio.fixture(scope="function")
-async def db_session() -> AsyncSession:  # type: ignore[misc]
+async def db_session() -> AsyncGenerator[AsyncSession, None]:
     """
     每個測試函式取得獨立的 in-memory DB session。
     測試結束後自動清除，確保測試間互不干擾。
