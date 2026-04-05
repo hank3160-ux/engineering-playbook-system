@@ -1,4 +1,4 @@
-
+﻿
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -392,7 +392,7 @@
   <span class="md-ellipsis">
     
   
-    總覽
+    蝮質汗
   
 
     
@@ -420,7 +420,7 @@
   <span class="md-ellipsis">
     
   
-    標準流程
+    璅?瘚?
   
 
     
@@ -448,7 +448,7 @@
   <span class="md-ellipsis">
     
   
-    架構品質
+    ?嗆??釭
   
 
     
@@ -476,7 +476,7 @@
   <span class="md-ellipsis">
     
   
-    可觀測性與資安
+    ?航?皜祆扯?鞈?
   
 
     
@@ -504,7 +504,7 @@
   <span class="md-ellipsis">
     
   
-    技術決策
+    ?銵捱蝑?
   
 
     
@@ -532,7 +532,7 @@
   <span class="md-ellipsis">
     
   
-    可靠性清單
+    ?舫??扳???
   
 
     
@@ -619,7 +619,7 @@
   <span class="md-ellipsis">
     
   
-    紀錄總覽
+    蝝?蜇閬?
   
 
     
@@ -808,19 +808,19 @@
   <a href="#template" class="md-nav__link">
     <span class="md-ellipsis">
       
-        使用 template/ 啟動新專案
+        雿輻 template/ ???啣?獢?
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="使用 template/ 啟動新專案">
+    <nav class="md-nav" aria-label="雿輻 template/ ???啣?獢?>
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        模板結構說明
+        璅⊥蝯?隤芣?
       
     </span>
   </a>
@@ -836,12 +836,12 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        提交變更流程
+        ?漱霈瘚?
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="提交變更流程">
+    <nav class="md-nav" aria-label="?漱霈瘚?">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -859,7 +859,7 @@
   <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 開發
+        2. ?
       
     </span>
   </a>
@@ -870,7 +870,7 @@
   <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. 本地驗證
+        3. ?砍撽?
       
     </span>
   </a>
@@ -881,7 +881,7 @@
   <a href="#4-pull-request" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 提交 Pull Request
+        4. ?漱 Pull Request
       
     </span>
   </a>
@@ -897,7 +897,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        規範文件更新原則
+        閬??辣?湔??
       
     </span>
   </a>
@@ -922,91 +922,91 @@
 
 
 <h1 id="contributing-guide">Contributing Guide</h1>
-<p>歡迎貢獻 Engineering Playbook System。本指南說明如何使用 <code>template/</code> 啟動新專案，以及如何提交變更。</p>
+<p>甇∟?鞎Ｙ Engineering Playbook System???隤芣?憒?雿輻 <code>template/</code> ???啣?獢?隞亙?憒??漱霈??/p>
 <hr />
-<h2 id="template">使用 template/ 啟動新專案</h2>
-<p><code>template/</code> 是一個可直接複製的標準 Python 服務骨架，內建三層架構、logging、環境變數管理與測試範例。</p>
-<pre><code class="language-bash"># 1. 複製模板到新目錄
+<h2 id="template">雿輻 template/ ???啣?獢?/h2>
+<p><code>template/</code> ?臭???湔銴ˊ??皞?Python ??撉冽嚗撱箔?撅斗瑽ogging?憓??貊恣??皜祈岫蝭???/p>
+<pre><code class="language-bash"># 1. 銴ˊ璅⊥?唳?桅?
 cp -r template/ ../your-new-service
 cd ../your-new-service
 
-# 2. 建立環境變數檔
+# 2. 撱箇??啣?霈瑼?
 cp .env.example .env
-# 編輯 .env，至少設定 APP_NAME
+# 蝺刻摩 .env嚗撠身摰?APP_NAME
 
-# 3. 安裝依賴
+# 3. 摰?靘陷
 pip install -r requirements.txt
 
-# 4. 啟動服務
+# 4. ????
 uvicorn app.main:app --reload
 
-# 5. 執行測試
+# 5. ?瑁?皜祈岫
 pytest tests/ -v
 </code></pre>
-<h3 id="_1">模板結構說明</h3>
+<h3 id="_1">璅⊥蝯?隤芣?</h3>
 <table>
 <thead>
 <tr>
-<th>路徑</th>
-<th>職責</th>
-<th>修改時機</th>
+<th>頝臬?</th>
+<th>?瑁痊</th>
+<th>靽格??</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>app/api/</code></td>
-<td>路由定義（HTTP 細節）</td>
-<td>新增 endpoint 時</td>
+<td>頝舐摰儔嚗TTP 蝝啁?嚗?/td>
+<td>?啣? endpoint ??/td>
 </tr>
 <tr>
 <td><code>app/services/</code></td>
-<td>業務邏輯</td>
-<td>新增功能時</td>
+<td>璆剖??摩</td>
+<td>?啣????/td>
 </tr>
 <tr>
 <td><code>app/schemas/</code></td>
-<td>Pydantic 資料結構</td>
-<td>新增 request/response model 時</td>
+<td>Pydantic 鞈?蝯?</td>
+<td>?啣? request/response model ??/td>
 </tr>
 <tr>
 <td><code>app/config/settings.py</code></td>
-<td>環境變數</td>
-<td>新增設定項目時</td>
+<td>?啣?霈</td>
+<td>?啣?閮剖????/td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="_2">提交變更流程</h2>
+<h2 id="_2">?漱霈瘚?</h2>
 <h3 id="1-fork-branch">1. Fork &amp; Branch</h3>
 <pre><code class="language-bash">git checkout -b feat/your-feature-name
 </code></pre>
-<p>分支命名遵循 <code>&lt;type&gt;/&lt;short-description&gt;</code>，type 同 Conventional Commits。</p>
-<h3 id="2">2. 開發</h3>
+<p>??賢??萄儐 <code>&lt;type&gt;/&lt;short-description&gt;</code>嚗ype ??Conventional Commits??/p>
+<h3 id="2">2. ?</h3>
 <ul>
-<li>遵循 <a href="../playbook/01-standard-workflow/"><code>playbook/01-standard-workflow</code></a> 的命名與 commit 規範</li>
-<li>架構決策參考 <a href="../playbook/02-architecture-and-quality/"><code>playbook/02-architecture-and-quality</code></a></li>
+<li>?萄儐 <a href="../playbook/01-standard-workflow/"><code>playbook/01-standard-workflow</code></a> ??? commit 閬?</li>
+<li>?嗆?瘙箇???<a href="../playbook/02-architecture-and-quality/"><code>playbook/02-architecture-and-quality</code></a></li>
 </ul>
-<h3 id="3">3. 本地驗證</h3>
+<h3 id="3">3. ?砍撽?</h3>
 <pre><code class="language-bash"># Lint
 pip install ruff
 ruff check .
 
-# 測試
+# 皜祈岫
 pytest
 
-# 安全掃描
+# 摰??
 bash scripts/check-secrets.sh
 </code></pre>
-<h3 id="4-pull-request">4. 提交 Pull Request</h3>
+<h3 id="4-pull-request">4. ?漱 Pull Request</h3>
 <ul>
-<li>使用 PR 模板填寫所有 checkbox</li>
-<li>確保 CI 全數通過後再請求 review</li>
+<li>雿輻 PR 璅⊥憛怠神???checkbox</li>
+<li>蝣箔? CI ?冽??敺?隢? review</li>
 </ul>
 <hr />
-<h2 id="_3">規範文件更新原則</h2>
-<p>若你的變更涉及工程規範（命名、架構、資安），請同步更新對應的 <code>playbook/</code> 文件，確保 SSOT 一致性。</p>
+<h2 id="_3">閬??辣?湔??</h2>
+<p>?乩????湔??極蝔?蝭??賢??瑽?摰?嚗??郊?湔撠???<code>playbook/</code> ?辣嚗Ⅱ靽?SSOT 銝?湔扼?/p>
 <hr />
-<p><em>有任何問題，請開 Issue 討論，再開始實作。</em></p>
+<p><em>?遙雿?憿?隢? Issue 閮?嚗???撖虫???/em></p>
 
 
 
