@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+
+  api:
+    build:
+      context: .
+      dockerfile: demo/Dockerfile
+    container_name: playbook-api
+    ports:
+      - "8000:8000"
+    environment:
+      - LOG_LEVEL=INFO
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  docs:
+    image: squidfunk/mkdocs-material:latest
+    container_name: playbook-docs
+    ports:
+      - "8080:8000"
+    volumes:
+      - .:/docs
+    command: serve --dev-addr=0.0.0.0:8000
+    restart: unless-stopped
