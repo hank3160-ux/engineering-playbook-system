@@ -1,7 +1,7 @@
 site_name: Engineering Playbook System
 site_description: 工程標準系統 — 以 GitHub 為核心的 SSOT 平台
-site_url: https://your-org.github.io/engineering-playbook-system
-repo_url: https://github.com/your-org/engineering-playbook-system
+site_url: https://hank3160-ux.github.io/engineering-playbook-system
+repo_url: https://github.com/hank3160-ux/engineering-playbook-system
 repo_name: engineering-playbook-system
 
 theme:
@@ -32,6 +32,7 @@ nav:
       - Standard Workflow: playbook/01-standard-workflow.md
       - Architecture & Quality: playbook/02-architecture-and-quality.md
       - Observability & Security: playbook/03-observability-and-security.md
+  - Contributing: CONTRIBUTING.md
 
 markdown_extensions:
   - pymdownx.highlight:

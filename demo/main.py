@@ -1,15 +1,17 @@
 """
 Engineering Playbook System — FastAPI MVP (v2)
-新增：ProcessTimeMiddleware、Global Exception Handler
+新增：ProcessTimeMiddleware、Global Exception Handler、URL Checker
 """
 
 import time
+from collections.abc import Awaitable, Callable
 from datetime import datetime, timezone
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Response
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
+from demo.api.url_checker import router as url_checker_router
 from demo.logger import get_logger
 
 logger = get_logger(__name__)
@@ -28,7 +30,10 @@ _start_time = time.time()
 # ---------------------------------------------------------------------------
 
 @app.middleware("http")
-async def process_time_middleware(request: Request, call_next) -> JSONResponse:
+async def process_time_middleware(
+    request: Request,
+    call_next: Callable[[Request], Awaitable[Response]],
+) -> Response:
     start = time.perf_counter()
     response = await call_next(request)
     duration_ms = round((time.perf_counter() - start) * 1000, 2)
@@ -105,3 +110,10 @@ async def health_check() -> HealthResponse:
         uptime_seconds=uptime,
         timestamp=now,
     )
+
+
+# ---------------------------------------------------------------------------
+# Routers
+# ---------------------------------------------------------------------------
+
+app.include_router(url_checker_router)

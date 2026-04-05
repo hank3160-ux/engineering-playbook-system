@@ -42,3 +42,13 @@ testpaths = ["demo/tests", "template/tests"]
 python_files = ["test_*.py"]
 python_functions = ["test_*"]
 addopts = "-v --tb=short"
+
+# ---------------------------------------------------------------------------
+# Mypy — 靜態型別檢查
+# ---------------------------------------------------------------------------
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+exclude = ["template/tests", "demo/tests"]

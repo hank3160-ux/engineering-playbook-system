@@ -4,8 +4,11 @@
 
 📖 **文件站**：[https://hank3160-ux.github.io/engineering-playbook-system](https://hank3160-ux.github.io/engineering-playbook-system)
 
-![CI](https://github.com/hank3160-ux/engineering-playbook-system/actions/workflows/ci.yml/badge.svg)
-![Docs](https://github.com/hank3160-ux/engineering-playbook-system/actions/workflows/deploy-docs.yml/badge.svg)
+![CI](https://github.com/hank3160-ux/engineering-playbook-system/actions/workflows/ci.yml/badge.svg?branch=main)
+![Deploy Docs](https://github.com/hank3160-ux/engineering-playbook-system/actions/workflows/deploy-docs.yml/badge.svg?branch=main)
+![Python](https://img.shields.io/badge/python-3.11-blue?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688?logo=fastapi&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-green)
 
 ---
 
@@ -157,6 +160,27 @@ mkdocs serve
 
 ---
 
+## Engineering Practices
+
+此專案完整示範了以下五項核心工程實踐：
+
+**1. CI/CD Pipeline**
+GitHub Actions 在每次 push to main 時自動執行 pytest，並將 MkDocs 文件站部署至 GitHub Pages，實現從 commit 到上線的全自動化流程。
+
+**2. Containerization with Docker**
+採用 Multi-stage build 最小化映像體積，以非 root 使用者運行降低攻擊面，並配置 HEALTHCHECK 確保容器健康狀態可被 orchestrator 監控。
+
+**3. Middleware & Observability**
+`ProcessTimeMiddleware` 自動在每個 Response Header 注入 `X-Process-Time-Ms`，搭配結構化 logging（`key=value` 格式），為 SLI/SLO 監控提供可量測的基礎數據。
+
+**4. Layered Architecture**
+`template/` 示範三層分離：`api/`（路由/HTTP 細節）→ `services/`（業務邏輯）→ `schemas/`（Pydantic 資料結構），確保各層職責單一、可獨立測試。
+
+**5. Security-First Development**
+`scripts/check-secrets.sh` 作為 pre-commit hook 掃描 8 種常見 secret 洩露模式；`pyproject.toml` 統一 ruff linter 與 mypy 靜態型別檢查，在 CI 層攔截潛在問題。
+
+---
+
 ## Contributing
 
 所有變更請遵循 [`playbook/01-standard-workflow.md`](playbook/01-standard-workflow.md) 中定義的規範，並透過 Pull Request 提交。
@@ -167,7 +191,7 @@ mkdocs serve
 
 | 版本 | 說明 |
 |------|------|
-| v1.1.0 | 專案治理：Issue/PR 模板、GitHub Pages 自動部署、pyproject.toml、CONTRIBUTING.md |
+| v1.2.0 | 實戰驗證：url_checker 服務、mypy 型別檢查、完整 type hints、badges |
 | v1.0.0 | 正式穩定版：Docker 化、資安規範、pre-commit 掃描、完整 Playbook |
 | v0.3.0 | CI/CD、三層架構模板、MkDocs 文件站 |
 | v0.2.0 | ProcessTimeMiddleware、Exception Handler、pydantic-settings |
@@ -176,3 +200,5 @@ mkdocs serve
 ---
 
 *v1.0 穩定版 — Maintained with SSOT principle. GitHub is the source of truth.*
+
+| v1.1.0 | 專案治理：Issue/PR 模板、GitHub Pages 自動部署、pyproject.toml、CONTRIBUTING.md |
