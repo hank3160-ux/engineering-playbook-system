@@ -1,0 +1,1649 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../04-technical-decisions/">
+      
+      
+        <link rel="next" href="../adr/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>可靠性清單 - Engineering Playbook System</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#reliability-checklist" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Engineering Playbook System" class="md-header__button md-logo" aria-label="Engineering Playbook System" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Engineering Playbook System
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              可靠性清單
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Playbook
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../adr/" class="md-tabs__link">
+          
+  
+  
+  ADR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../how-to-extend/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guides
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../contributing.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Engineering Playbook System" class="md-nav__button md-logo" aria-label="Engineering Playbook System" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Engineering Playbook System
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Playbook
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Playbook
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    總覽
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-standard-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準流程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-architecture-and-quality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    架構品質
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-observability-and-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    可觀測性與資安
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-technical-decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    技術決策
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    可靠性清單
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    可靠性清單
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-load-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 負載測試（Load Testing）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 負載測試（Load Testing）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目標
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        工具推薦
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Locust 基礎範例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        負載測試通過標準
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-stress-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 壓力測試（Stress Testing）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 壓力測試（Stress Testing）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目標
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        測試策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        執行步驟
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        觀察指標
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-disaster-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 災難復原（Disaster Recovery）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 災難復原（Disaster Recovery）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rto-rpo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RTO / RPO 定義
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dr-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DR 演練 Checklist
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DR 演練 Checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        每月執行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        每季執行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        每年執行
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        快速復原 SOP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 可靠性設計原則
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 可靠性設計原則">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fail-fast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fail Fast
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graceful-degradation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graceful Degradation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#circuit-breaker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Circuit Breaker 概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-pr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 可靠性 PR 合併前檢查
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ADR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    紀錄總覽
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/ADR-001-layered-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-001
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/ADR-002-async-database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-002
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/ADR-003-cicd-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-003
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to-extend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-load-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 負載測試（Load Testing）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 負載測試（Load Testing）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目標
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        工具推薦
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Locust 基礎範例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        負載測試通過標準
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-stress-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 壓力測試（Stress Testing）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 壓力測試（Stress Testing）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目標
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        測試策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        執行步驟
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        觀察指標
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-disaster-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 災難復原（Disaster Recovery）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 災難復原（Disaster Recovery）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rto-rpo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RTO / RPO 定義
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dr-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DR 演練 Checklist
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DR 演練 Checklist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        每月執行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        每季執行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        每年執行
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        快速復原 SOP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 可靠性設計原則
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 可靠性設計原則">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fail-fast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fail Fast
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graceful-degradation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graceful Degradation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#circuit-breaker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Circuit Breaker 概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-pr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 可靠性 PR 合併前檢查
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="reliability-checklist">Reliability Checklist — 可靠性測試與災難復原準則</h1>
+<blockquote>
+<p>版本：1.0.0 | SSOT：GitHub</p>
+</blockquote>
+<hr />
+<h2 id="1-load-testing">1. 負載測試（Load Testing）</h2>
+<h3 id="_1">目標</h3>
+<p>驗證系統在預期流量下能維持 SLO（延遲 P99 ≤ 500ms，錯誤率 ≤ 0.1%）。</p>
+<h3 id="_2">工具推薦</h3>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>適用場景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://locust.io/">Locust</a></td>
+<td>Python 撰寫測試腳本，適合團隊維護</td>
+</tr>
+<tr>
+<td><a href="https://k6.io/">k6</a></td>
+<td>JavaScript 腳本，CI 整合友善</td>
+</tr>
+<tr>
+<td><a href="https://github.com/wg/wrk">wrk</a></td>
+<td>快速基準測試，單指令執行</td>
+</tr>
+</tbody>
+</table>
+<h3 id="locust">Locust 基礎範例</h3>
+<pre><code class="language-python"># locustfile.py
+from locust import HttpUser, task, between
+
+class ApiUser(HttpUser):
+    wait_time = between(0.5, 2)  # 模擬真實使用者思考時間
+
+    @task(3)
+    def health_check(self) -&gt; None:
+        self.client.get(&quot;/health&quot;)
+
+    @task(1)
+    def check_url(self) -&gt; None:
+        self.client.post(&quot;/url-checker/check&quot;, json={&quot;url&quot;: &quot;https://example.com&quot;})
+</code></pre>
+<pre><code class="language-bash"># 執行：100 個並發使用者，每秒新增 10 個，持續 60 秒
+locust -f locustfile.py --headless -u 100 -r 10 -t 60s --host http://localhost:8000
+</code></pre>
+<h3 id="_3">負載測試通過標準</h3>
+<ul>
+<li>P50 延遲 ≤ 100ms</li>
+<li>P99 延遲 ≤ 500ms</li>
+<li>錯誤率 ≤ 0.1%</li>
+<li>CPU 使用率 ≤ 70%（留有緩衝空間）</li>
+</ul>
+<hr />
+<h2 id="2-stress-testing">2. 壓力測試（Stress Testing）</h2>
+<h3 id="_4">目標</h3>
+<p>找出系統的「斷點」— 在什麼流量下開始出現錯誤或延遲劇增。</p>
+<h3 id="_5">測試策略</h3>
+<pre><code>流量
+  │
+  │                    ← 斷點（開始出現錯誤）
+  │               ╱‾‾‾
+  │          ╱‾‾‾
+  │     ╱‾‾‾
+  │╱‾‾‾
+  └──────────────────── 時間
+  逐步增加流量，觀察延遲與錯誤率的變化點
+</code></pre>
+<h3 id="_6">執行步驟</h3>
+<ol>
+<li>從正常負載的 50% 開始</li>
+<li>每 5 分鐘增加 25% 流量</li>
+<li>記錄每個階段的 P99 延遲與錯誤率</li>
+<li>找到錯誤率超過 1% 的臨界點</li>
+<li>斷點流量即為系統容量上限，SLO 應設為其 70%</li>
+</ol>
+<h3 id="_7">觀察指標</h3>
+<pre><code class="language-bash"># 即時監控（搭配 ProcessTimeMiddleware log）
+tail -f app.log | grep &quot;duration_ms&quot; | awk -F'duration_ms=' '{print $2}'
+</code></pre>
+<hr />
+<h2 id="3-disaster-recovery">3. 災難復原（Disaster Recovery）</h2>
+<h3 id="rto-rpo">RTO / RPO 定義</h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>定義</th>
+<th>建議目標</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RTO（Recovery Time Objective）</td>
+<td>從故障到服務恢復的最長可接受時間</td>
+<td>≤ 15 分鐘</td>
+</tr>
+<tr>
+<td>RPO（Recovery Point Objective）</td>
+<td>可接受的最大資料遺失時間範圍</td>
+<td>≤ 5 分鐘</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dr-checklist">DR 演練 Checklist</h3>
+<h4 id="_8">每月執行</h4>
+<ul>
+<li>[ ] 模擬 API 服務崩潰：<code>docker stop playbook-api</code>，驗證 HEALTHCHECK 觸發重啟</li>
+<li>[ ] 驗證 <code>/health</code> 在重啟後 30 秒內恢復回應</li>
+<li>[ ] 確認 log 中有完整的 shutdown / startup 記錄</li>
+</ul>
+<h4 id="_9">每季執行</h4>
+<ul>
+<li>[ ] 模擬資料庫連線中斷，驗證 <code>pool_pre_ping=True</code> 自動重連</li>
+<li>[ ] 從備份還原測試資料庫，驗證 RPO 達標</li>
+<li>[ ] 執行完整的 <code>docker compose down &amp;&amp; docker compose up --build</code>，驗證冷啟動時間</li>
+</ul>
+<h4 id="_10">每年執行</h4>
+<ul>
+<li>[ ] 完整 DR 演練：模擬整個環境失效，從零重建服務</li>
+<li>[ ] 驗證 <code>cookiecutter</code> 模板可在 30 分鐘內生成並部署新服務</li>
+<li>[ ] 更新 RTO/RPO 目標，反映業務成長</li>
+</ul>
+<h3 id="sop">快速復原 SOP</h3>
+<pre><code class="language-bash"># 1. 確認服務狀態
+docker compose ps
+
+# 2. 查看最近 100 行 log
+docker compose logs --tail=100 api
+
+# 3. 強制重啟服務
+docker compose restart api
+
+# 4. 若映像損壞，重新建置
+docker compose up --build --force-recreate api
+
+# 5. 驗證恢復
+curl -i http://localhost:8000/health
+</code></pre>
+<hr />
+<h2 id="4">4. 可靠性設計原則</h2>
+<h3 id="fail-fast">Fail Fast</h3>
+<p>服務啟動時若缺少必要設定（如 <code>DATABASE_URL</code>），應立即拋出例外並停止啟動，而非在運行中途才崩潰。pydantic-settings 的型別驗證天然實現此原則。</p>
+<h3 id="graceful-degradation">Graceful Degradation</h3>
+<p>當非核心依賴（如外部 API）失敗時，服務應降級而非完全崩潰：</p>
+<pre><code class="language-python">try:
+    result = await external_service.call()
+except Exception:
+    logger.warning(&quot;External service unavailable, using fallback&quot;)
+    result = fallback_value  # 回傳快取或預設值
+</code></pre>
+<h3 id="circuit-breaker">Circuit Breaker 概念</h3>
+<p>當下游服務連續失敗超過閾值，暫時停止呼叫（open circuit），避免雪崩效應。推薦使用 <a href="https://tenacity.readthedocs.io/">tenacity</a> 實作重試與熔斷邏輯。</p>
+<hr />
+<h2 id="5-pr">5. 可靠性 PR 合併前檢查</h2>
+<ul>
+<li>[ ] 新功能已通過負載測試（至少 100 req/s，持續 60 秒）</li>
+<li>[ ] 異常路徑有對應的測試案例</li>
+<li>[ ] 所有外部呼叫有 timeout 設定</li>
+<li>[ ] 資料庫查詢有適當的 index（避免全表掃描）</li>
+<li>[ ] HEALTHCHECK 已驗證可正確反映服務狀態</li>
+</ul>
+<hr />
+<p><em>可靠性不是一次性工作，而是持續的工程實踐。</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1405 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../03-observability-and-security/">
+      
+      
+        <link rel="next" href="../05-reliability-checklist/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>技術決策 - Engineering Playbook System</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#technical-decisions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Engineering Playbook System" class="md-header__button md-logo" aria-label="Engineering Playbook System" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Engineering Playbook System
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              技術決策
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Playbook
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../adr/" class="md-tabs__link">
+          
+  
+  
+  ADR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../how-to-extend/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guides
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../contributing.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Engineering Playbook System" class="md-nav__button md-logo" aria-label="Engineering Playbook System" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Engineering Playbook System
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Playbook
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Playbook
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    總覽
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-standard-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準流程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-architecture-and-quality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    架構品質
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-observability-and-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    可觀測性與資安
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    技術決策
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    技術決策
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-maintainability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 可維護性（Maintainability）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 可維護性（Maintainability）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：單一事實來源（SSOT）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：三層架構分離
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pydantic-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：pydantic-settings 管理環境變數
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：統一 logging 模組
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-scalability-extensibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 擴充性（Scalability &amp; Extensibility）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 擴充性（Scalability &amp; Extensibility）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fastapi-pydantic-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：FastAPI + Pydantic v2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqlalchemy-2x-orm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：SQLAlchemy 2.x 異步 ORM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cookiecutter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：cookiecutter 專案生成
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#router" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：Router 模組化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 安全性（Security）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 安全性（Security）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-stage-docker-build-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：Multi-stage Docker Build + 非 root 使用者
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-commit-secret-scanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：Pre-commit Secret Scanner
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ruff-mypy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：Ruff + Mypy 靜態分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exception-handler-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：全域 Exception Handler 回傳 JSON
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 演進路徑
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-reliability-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    可靠性清單
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ADR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    紀錄總覽
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/ADR-001-layered-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-001
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/ADR-002-async-database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-002
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/ADR-003-cicd-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-003
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to-extend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-maintainability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 可維護性（Maintainability）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 可維護性（Maintainability）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：單一事實來源（SSOT）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：三層架構分離
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pydantic-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：pydantic-settings 管理環境變數
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：統一 logging 模組
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-scalability-extensibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 擴充性（Scalability &amp; Extensibility）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 擴充性（Scalability &amp; Extensibility）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fastapi-pydantic-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：FastAPI + Pydantic v2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqlalchemy-2x-orm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：SQLAlchemy 2.x 異步 ORM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cookiecutter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：cookiecutter 專案生成
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#router" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：Router 模組化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 安全性（Security）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 安全性（Security）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-stage-docker-build-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：Multi-stage Docker Build + 非 root 使用者
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-commit-secret-scanner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：Pre-commit Secret Scanner
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ruff-mypy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：Ruff + Mypy 靜態分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exception-handler-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        決策：全域 Exception Handler 回傳 JSON
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 演進路徑
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="technical-decisions">Technical Decisions — 技術架構白皮書</h1>
+<blockquote>
+<p>版本：1.0.0 | SSOT：GitHub</p>
+</blockquote>
+<p>本文件記錄 Engineering Playbook System（EPS）在設計與演進過程中的核心技術決策，說明每個選擇背後的「為什麼」，而非「做了什麼」。</p>
+<hr />
+<h2 id="1-maintainability">1. 可維護性（Maintainability）</h2>
+<h3 id="ssot">決策：單一事實來源（SSOT）</h3>
+<p>所有規範、設定、架構決策集中於 GitHub repository，任何變更皆透過 Pull Request 審查。這消除了「口耳相傳的規範」與「文件與代碼不一致」兩個最常見的維護債。</p>
+<h3 id="_1">決策：三層架構分離</h3>
+<pre><code>api/       ← HTTP 細節（status code、request parsing）
+services/  ← 業務邏輯（可獨立測試，不依賴 HTTP）
+schemas/   ← 資料契約（輸入驗證、輸出序列化）
+</code></pre>
+<p>每層職責單一，修改一層不影響其他層。Service 層可在不啟動 HTTP server 的情況下直接單元測試，大幅降低測試成本。</p>
+<h3 id="pydantic-settings">決策：pydantic-settings 管理環境變數</h3>
+<p>所有設定從環境變數讀取，型別由 Pydantic 自動驗證。服務啟動時若缺少必要設定會立即失敗（fail-fast），而非在運行中途才崩潰，縮短問題定位時間。</p>
+<h3 id="logging">決策：統一 logging 模組</h3>
+<p>所有服務從 <code>logger.py</code> 取得 logger，確保格式一致。結構化的 <code>key=value</code> 格式讓 log aggregator（CloudWatch、Datadog）可直接解析，無需額外 parser。</p>
+<hr />
+<h2 id="2-scalability-extensibility">2. 擴充性（Scalability &amp; Extensibility）</h2>
+<h3 id="fastapi-pydantic-v2">決策：FastAPI + Pydantic v2</h3>
+<p>FastAPI 的 async-first 設計天然支援高並發 I/O 場景。Pydantic v2 以 Rust 實作核心，序列化效能較 v1 提升 5-50 倍，為未來流量增長預留空間。</p>
+<h3 id="sqlalchemy-2x-orm">決策：SQLAlchemy 2.x 異步 ORM</h3>
+<p>採用 <code>async_sessionmaker</code> 與 <code>AsyncSession</code>，資料庫操作不阻塞 event loop。<code>get_db_session</code> 以 FastAPI Dependency 注入，Session 生命週期由框架管理，業務邏輯無需關心連線池細節。</p>
+<h3 id="cookiecutter">決策：cookiecutter 專案生成</h3>
+<p><code>cookiecutter.json</code> 讓新服務可在 30 秒內從模板生成，確保所有服務遵循相同的目錄結構與設定慣例。隨著團隊規模增長，這是維持架構一致性的關鍵槓桿。</p>
+<h3 id="router">決策：Router 模組化</h3>
+<p>每個功能域（health、url_checker、users...）有獨立的 <code>api/</code> 模組，透過 <code>app.include_router()</code> 組裝。新增功能只需新增 router，不修改現有代碼，符合開放封閉原則（OCP）。</p>
+<hr />
+<h2 id="3-security">3. 安全性（Security）</h2>
+<h3 id="multi-stage-docker-build-root">決策：Multi-stage Docker Build + 非 root 使用者</h3>
+<p>Builder stage 安裝依賴，runtime stage 只複製必要檔案，映像體積最小化，攻擊面縮小。以非 root 使用者運行，即使容器被突破，攻擊者也無法取得 root 權限。</p>
+<h3 id="pre-commit-secret-scanner">決策：Pre-commit Secret Scanner</h3>
+<p><code>scripts/check-secrets.sh</code> 在 commit 前掃描 8 種常見 secret 洩露模式（AWS key、GitHub token、OpenAI key 等）。在開發者本機攔截，成本遠低於在 CI 或生產環境發現。</p>
+<h3 id="ruff-mypy">決策：Ruff + Mypy 靜態分析</h3>
+<p>Ruff 在毫秒內完成 linting，mypy strict 模式強制完整型別標注。型別錯誤在 CI 層攔截，避免 <code>AttributeError</code>、<code>None</code> 解引用等常見運行時錯誤進入生產環境。</p>
+<h3 id="exception-handler-json">決策：全域 Exception Handler 回傳 JSON</h3>
+<p>所有未捕捉例外統一回傳 <code>{"error": "...", "detail": "..."}</code> 格式，而非 FastAPI 預設的 HTML 錯誤頁面。這防止 stack trace 洩漏給 client，同時讓 API consumer 可以程式化處理錯誤。</p>
+<hr />
+<h2 id="4">4. 演進路徑</h2>
+<table>
+<thead>
+<tr>
+<th>階段</th>
+<th>已完成</th>
+<th>建議下一步</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基礎</td>
+<td>FastAPI MVP、logging、SSOT</td>
+<td>—</td>
+</tr>
+<tr>
+<td>品質</td>
+<td>三層架構、型別標注、pytest</td>
+<td>加入 coverage 門檻（≥80%）</td>
+</tr>
+<tr>
+<td>維運</td>
+<td>Docker、CI/CD、GitHub Pages</td>
+<td>加入 Prometheus metrics endpoint</td>
+</tr>
+<tr>
+<td>治理</td>
+<td>Issue/PR 模板、cookiecutter</td>
+<td>加入 Dependabot 自動更新依賴</td>
+</tr>
+<tr>
+<td>資料</td>
+<td>SQLAlchemy async、CRUD</td>
+<td>加入 Alembic migration</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>技術決策一旦確立，變更須在本文件說明原因，並透過 PR 審查。</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

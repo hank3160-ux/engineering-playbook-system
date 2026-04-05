@@ -1,0 +1,1505 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="playbook/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Engineering Playbook System</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#engineering-playbook-system" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Engineering Playbook System" class="md-header__button md-logo" aria-label="Engineering Playbook System" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Engineering Playbook System
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="playbook/" class="md-tabs__link">
+          
+  
+  
+  Playbook
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="playbook/adr/" class="md-tabs__link">
+          
+  
+  
+  ADR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="how-to-extend/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Guides
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="contributing.md" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Engineering Playbook System" class="md-nav__button md-logo" aria-label="Engineering Playbook System" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Engineering Playbook System
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        資料流
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目錄導覽
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the Template
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-docs-preview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Docs Preview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#engineering-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Engineering Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-youre-a-hiring-manager-start-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If You're a Hiring Manager, Start Here
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contributing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changelog
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-note-on-this-journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Note on This Journey
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Playbook
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Playbook
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="playbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    總覽
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="playbook/01-standard-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準流程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="playbook/02-architecture-and-quality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    架構品質
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="playbook/03-observability-and-security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    可觀測性與資安
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="playbook/04-technical-decisions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    技術決策
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="playbook/05-reliability-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    可靠性清單
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ADR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="playbook/adr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    紀錄總覽
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="playbook/adr/ADR-001-layered-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-001
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="playbook/adr/ADR-002-async-database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-002
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="playbook/adr/ADR-003-cicd-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-003
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="how-to-extend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributing.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        資料流
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目錄導覽
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the Template
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-docs-preview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Docs Preview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#engineering-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Engineering Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-youre-a-hiring-manager-start-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If You're a Hiring Manager, Start Here
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contributing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changelog
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-note-on-this-journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Note on This Journey
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="engineering-playbook-system">Engineering Playbook System</h1>
+<blockquote>
+<p>v2.0.0 (Golden Release) — 以 GitHub 為核心的單一事實來源（SSOT）平台，統一管理開發規範、流程自動化與可驗證的 MVP 示範。</p>
+</blockquote>
+<p>📖 <strong>文件站</strong>：<a href="https://hank3160-ux.github.io/engineering-playbook-system">https://hank3160-ux.github.io/engineering-playbook-system</a></p>
+<p><a href="https://github.com/hank3160-ux/engineering-playbook-system/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/hank3160-ux/engineering-playbook-system/actions/workflows/ci.yml/badge.svg?branch=main" /></a>
+<a href="https://github.com/hank3160-ux/engineering-playbook-system/actions/workflows/deploy-docs.yml"><img alt="Deploy Docs" src="https://github.com/hank3160-ux/engineering-playbook-system/actions/workflows/deploy-docs.yml/badge.svg?branch=main" /></a>
+<a href="https://www.python.org/"><img alt="Python" src="https://img.shields.io/badge/python-3.11-blue?logo=python&amp;logoColor=white" /></a>
+<a href="https://fastapi.tiangolo.com/"><img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-0.110-009688?logo=fastapi&amp;logoColor=white" /></a>
+<a href="https://github.com/hank3160-ux/engineering-playbook-system"><img alt="codecov" src="https://img.shields.io/badge/coverage-tracked-brightgreen?logo=codecov" /></a>
+<a href="CHANGELOG/"><img alt="Version" src="https://img.shields.io/badge/version-v2.0.0-6366f1" /></a>
+<a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-22c55e" /></a></p>
+<hr />
+<h2 id="vision">Vision</h2>
+<p>打造一套可執行、可驗證、可演進的工程標準體系：</p>
+<ul>
+<li>所有規範以 Markdown 文件存活於 <code>playbook/</code>，版本由 Git 管控</li>
+<li>所有示範以可運行的程式碼存活於 <code>demo/</code>，確保文件與實作一致</li>
+<li>任何變更皆透過 Pull Request 審查，保持 SSOT 原則</li>
+</ul>
+<hr />
+<h2 id="architecture">Architecture</h2>
+<pre><code>engineering-playbook-system/
+│
+├── .github/workflows/
+│   └── ci.yml                          # GitHub Actions CI（push to main 自動測試）
+│
+├── playbook/                           # 工程規範文件（SSOT）
+│   ├── 01-standard-workflow.md         # 命名、Git Commit、環境安全
+│   ├── 02-architecture-and-quality.md  # 架構規範、錯誤處理、日誌標準
+│   └── 03-observability-and-security.md # 可觀測性、SLI/SLO、資安防禦
+│
+├── demo/                               # 可執行的 MVP 示範
+│   ├── Dockerfile                      # Multi-stage build
+│   ├── main.py                         # FastAPI 入口（middleware &amp; exception handler）
+│   ├── logger.py                       # 統一 logging 設定
+│   ├── requirements.txt                # 依賴清單
+│   └── tests/
+│       └── test_health.py              # pytest 測試
+│
+├── template/                           # 標準 Python 專案模板
+│   ├── app/
+│   │   ├── main.py                     # FastAPI 入口（組裝層）
+│   │   ├── logger.py                   # logging 模組
+│   │   ├── api/health.py               # 路由層
+│   │   ├── services/health_service.py  # 業務邏輯層
+│   │   ├── schemas/health.py           # Pydantic 資料結構
+│   │   └── config/settings.py          # pydantic-settings 環境變數管理
+│   ├── tests/test_health.py            # pytest 範例
+│   ├── .env.example                    # 環境變數範本
+│   └── requirements.txt
+│
+├── scripts/
+│   └── check-secrets.sh                # Pre-commit 敏感資料掃描
+│
+├── docker-compose.yml                  # 一鍵啟動 API + Docs
+├── mkdocs.yml                          # MkDocs Material 文件站設定
+└── README.md                           # 專案首頁（本文件）
+</code></pre>
+<h3 id="_1">資料流</h3>
+<pre><code>開發者
+  │
+  ├─► scripts/check-secrets.sh  ──► Pre-commit 安全掃描
+  │
+  ├─► playbook/  ──► 規範定義（命名、Commit、架構、資安）
+  │
+  └─► demo/      ──► 實作驗證（FastAPI /health API）
+                        │
+                        └─► GitHub Actions CI（自動測試）
+</code></pre>
+<hr />
+<h2 id="_2">目錄導覽</h2>
+<table>
+<thead>
+<tr>
+<th>路徑</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="playbook/01-standard-workflow/"><code>playbook/01-standard-workflow</code></a></td>
+<td>專案命名準則、Git Commit 規範、環境安全指引</td>
+</tr>
+<tr>
+<td><a href="playbook/02-architecture-and-quality/"><code>playbook/02-architecture-and-quality</code></a></td>
+<td>架構規範、錯誤處理機制、日誌追蹤標準</td>
+</tr>
+<tr>
+<td><a href="playbook/03-observability-and-security/"><code>playbook/03-observability-and-security</code></a></td>
+<td>可觀測性、SLI/SLO、金鑰管理 SOP、資安防禦清單</td>
+</tr>
+<tr>
+<td><a href="demo/"><code>demo/</code></a></td>
+<td>FastAPI MVP — ProcessTimeMiddleware、Exception Handler、pytest</td>
+</tr>
+<tr>
+<td><a href="template/"><code>template/</code></a></td>
+<td>標準 Python 專案模板（三層架構，可直接複製）</td>
+</tr>
+<tr>
+<td><a href="scripts/check-secrets.sh"><code>scripts/check-secrets.sh</code></a></td>
+<td>Pre-commit 敏感資料掃描腳本</td>
+</tr>
+<tr>
+<td><a href="contributing/"><code>contributing/</code></a></td>
+<td>貢獻指南 — 如何使用 template/ 啟動新專案</td>
+</tr>
+<tr>
+<td><a href="pyproject.toml"><code>pyproject.toml</code></a></td>
+<td>ruff linter 與 pytest 統一設定</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="quick-start">Quick Start</h2>
+<p>EPS 是一個起手式，不是一個要直接部署的服務。以下是推薦的使用流程：</p>
+<pre><code class="language-bash"># 1. 一鍵初始化開發環境（安裝依賴、pre-commit hooks、執行測試）
+bash scripts/dev-setup.sh
+
+# 2. 從 template/ 建立你的新服務
+cp -r template/ ../your-new-service
+cd ../your-new-service
+cp .env.example .env
+
+# 3. 啟動並驗證
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+curl -i http://localhost:8000/health
+# Response Headers 含 X-Request-ID 與 X-Process-Time-Ms
+</code></pre>
+<p>想了解如何擴充架構，請參考 <a href="how-to-extend/">How to Extend</a>。</p>
+<hr />
+<h2 id="docker">Docker</h2>
+<pre><code class="language-bash"># 一鍵啟動 API（port 8000）與文件站（port 8080）
+docker compose up --build
+
+# API 健康檢查
+curl http://localhost:8000/health
+
+# 文件站
+open http://localhost:8080
+</code></pre>
+<hr />
+<h2 id="using-the-template">Using the Template</h2>
+<pre><code class="language-bash">cp -r template/ ../your-new-service
+cp your-new-service/.env.example your-new-service/.env
+pip install -r your-new-service/requirements.txt
+uvicorn app.main:app --reload
+</code></pre>
+<hr />
+<h2 id="security">Security</h2>
+<p>啟用 pre-commit 安全掃描：</p>
+<pre><code class="language-bash"># 安裝為 git hook
+cp scripts/check-secrets.sh .git/hooks/pre-commit
+chmod +x .git/hooks/pre-commit
+
+# 或手動執行
+bash scripts/check-secrets.sh
+</code></pre>
+<p>掃描項目：明文密碼、API key、AWS Access Key、GitHub Token、OpenAI Key、私鑰等。</p>
+<hr />
+<h2 id="local-docs-preview">Local Docs Preview</h2>
+<pre><code class="language-bash">pip install mkdocs-material
+mkdocs serve
+# 開啟 http://127.0.0.1:8000
+</code></pre>
+<hr />
+<h2 id="engineering-practices">Engineering Practices</h2>
+<p>此專案完整示範了以下五項核心工程實踐：</p>
+<p><strong>1. CI/CD Pipeline</strong>
+GitHub Actions 在每次 push to main 時自動執行 pytest，並將 MkDocs 文件站部署至 GitHub Pages，實現從 commit 到上線的全自動化流程。</p>
+<p><strong>2. Containerization with Docker</strong>
+採用 Multi-stage build 最小化映像體積，以非 root 使用者運行降低攻擊面，並配置 HEALTHCHECK 確保容器健康狀態可被 orchestrator 監控。</p>
+<p><strong>3. Middleware &amp; Observability</strong>
+<code>ProcessTimeMiddleware</code> 自動在每個 Response Header 注入 <code>X-Process-Time-Ms</code>，搭配結構化 logging（<code>key=value</code> 格式），為 SLI/SLO 監控提供可量測的基礎數據。</p>
+<p><strong>4. Layered Architecture</strong>
+<code>template/</code> 示範三層分離：<code>api/</code>（路由/HTTP 細節）→ <code>services/</code>（業務邏輯）→ <code>schemas/</code>（Pydantic 資料結構），確保各層職責單一、可獨立測試。</p>
+<p><strong>5. Security-First Development</strong>
+<code>scripts/check-secrets.sh</code> 作為 pre-commit hook 掃描 8 種常見 secret 洩露模式；<code>pyproject.toml</code> 統一 ruff linter 與 mypy 靜態型別檢查，在 CI 層攔截潛在問題。</p>
+<hr />
+<h2 id="if-youre-a-hiring-manager-start-here">If You're a Hiring Manager, Start Here</h2>
+<p>這個 repository 是我工程思維的完整展示。以下是建議的閱讀路徑：</p>
+<p><strong>想了解我如何做技術決策？</strong>
+→ <a href="playbook/adr/"><code>playbook/adr/</code></a> — 三份 ADR 記錄了層次架構、異步資料庫、CI/CD 的選擇原因，以及我考慮過但拒絕的替代方案。</p>
+<p><strong>想了解我的自動化治理能力？</strong>
+→ <a href=".github/workflows/"><code>.github/workflows/</code></a> — CI 測試、GitHub Pages 自動部署、CHANGELOG 自動生成，以及 pre-commit hooks 的完整防護鏈。</p>
+<p><strong>想看我如何實踐 Clean Architecture？</strong>
+→ <a href="demo/"><code>demo/</code></a> — 三層分離（api / services / schemas）、Request ID 追蹤、結構化 logging、全域 Exception Handler，每個設計都有對應的測試。</p>
+<p><strong>想看完整的工程規範體系？</strong>
+→ <a href="playbook/"><code>playbook/</code></a> — 從命名規範、Git Commit、架構設計、可觀測性到災難復原，五份文件構成一套可執行的工程文化。</p>
+<hr />
+<h2 id="contributing">Contributing</h2>
+<p>所有變更請遵循 <a href="playbook/01-standard-workflow/"><code>playbook/01-standard-workflow</code></a> 中定義的規範，並透過 Pull Request 提交。</p>
+<hr />
+<h2 id="changelog">Changelog</h2>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v2.0.0</td>
+<td>Golden Release：MIT License、Interview Showcase、維護者感言、正式封存</td>
+</tr>
+<tr>
+<td>v1.6.0</td>
+<td>架構視覺化：Mermaid 時序圖、commitizen、自動 CHANGELOG、badges 優化、型別全覆蓋</td>
+</tr>
+<tr>
+<td>v1.5.0</td>
+<td>純粹工程架構：pre-commit、ADR x3、dev-setup.sh、Item CRUD demo、擴充指南</td>
+</tr>
+<tr>
+<td>v1.4.0</td>
+<td>生產級可靠性：Request ID Middleware、異步 DB 測試、Dev Container、Reliability Playbook</td>
+</tr>
+<tr>
+<td>v1.3.0</td>
+<td>極致自動化：cookiecutter、SQLAlchemy async DB 層、技術架構白皮書</td>
+</tr>
+<tr>
+<td>v1.2.0</td>
+<td>實戰驗證：mypy 型別檢查、完整 type hints、badges</td>
+</tr>
+<tr>
+<td>v1.1.0</td>
+<td>專案治理：Issue/PR 模板、GitHub Pages 自動部署、pyproject.toml、CONTRIBUTING.md</td>
+</tr>
+<tr>
+<td>v1.0.0</td>
+<td>正式穩定版：Docker 化、資安規範、pre-commit 掃描、完整 Playbook</td>
+</tr>
+<tr>
+<td>v0.3.0</td>
+<td>CI/CD、三層架構模板、MkDocs 文件站</td>
+</tr>
+<tr>
+<td>v0.1.0</td>
+<td>基礎骨架：FastAPI MVP、Playbook、SSOT 結構</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="a-note-on-this-journey">A Note on This Journey</h2>
+<p>EPS 從一個空的 Git 骨架，歷經十個迭代，演進為一套涵蓋規範文件、可執行示範、自動化測試、容器化部署、靜態分析、架構決策紀錄與資料庫層的完整工程體系。</p>
+<p>每一個決策都有其原因，記錄在 <a href="playbook/adr/"><code>playbook/adr/</code></a>。每一行代碼都有對應的測試與文件，確保下一位接手的工程師不需要猜測。</p>
+<p>這個專案是人與 AI 協作的產物。感謝 Kiro 在每一個迭代中提供精準的工程建議、嚴謹的型別標注與一致的架構思維；感謝每一位閱讀這份 repository 的開發者，你們的目光是讓這份工作有意義的原因。</p>
+<p>EPS 不是一個完成品，而是一個持續演進的基準線。它應該被挑戰、被修正、被超越。這才是工程文化真正的樣子。</p>
+<hr />
+<p><em>v2.0.0 Golden Release — Maintained with SSOT principle. GitHub is the source of truth.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
