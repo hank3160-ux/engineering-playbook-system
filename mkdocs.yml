@@ -1,50 +1,21 @@
 site_name: Engineering Playbook System
-site_description: 工程標準系統 — 以 GitHub 為核心的 SSOT 平台
-site_url: https://hank3160-ux.github.io/engineering-playbook-system
-repo_url: https://github.com/hank3160-ux/engineering-playbook-system
-repo_name: engineering-playbook-system
-
 theme:
   name: material
-  language: zh-TW
   palette:
-    - scheme: default
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    - scheme: slate
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
+    scheme: default
+    primary: indigo
   features:
     - navigation.tabs
     - navigation.sections
-    - navigation.top
-    - content.code.copy
 
 nav:
   - Home: index.md
-  - Playbook: playbook/index.md
-  - ADR: playbook/adr/index.md
+  - Playbook: 
+      - 總覽: playbook/index.md
+      - 標準流程: playbook/01-standard-workflow.md
+      - 架構品質: playbook/02-architecture-and-quality.md
+  - ADR:
+      - 紀錄總覽: playbook/adr/index.md
+      - ADR-001: playbook/adr/ADR-001-layered-architecture.md
   - Guides: how-to-extend.md
   - Contributing: CONTRIBUTING.md
-
-markdown_extensions:
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.tabbed:
-      alternate_style: true
-  - admonition
-  - tables
-
-extra_javascript:
-  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
