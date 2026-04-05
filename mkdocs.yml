@@ -27,7 +27,7 @@ theme:
     - content.code.copy
 
 nav:
-  - Home: README.md
+  - Home: index.md
   - Playbook:
       - Standard Workflow: playbook/01-standard-workflow.md
       - Architecture & Quality: playbook/02-architecture-and-quality.md
