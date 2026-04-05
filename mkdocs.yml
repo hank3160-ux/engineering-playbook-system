@@ -25,4 +25,4 @@ nav:
       - ADR-002: playbook/adr/ADR-002-async-database.md
       - ADR-003: playbook/adr/ADR-003-cicd-design.md
   - Guides: how-to-extend.md
-  - Contributing: contributing.md
+  - Contributing: contributing/index.md
