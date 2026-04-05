@@ -7,6 +7,20 @@ Commit format follows [Conventional Commits](https://www.conventionalcommits.org
 
 ---
 
+## v2.0.0 (2026-04-05) — Golden Release
+
+### feat
+- MIT License added
+- Interview Showcase section in README
+- Maintainer's closing note acknowledging human-AI collaboration
+- Version bumped to v2.0.0 as official golden release
+
+### docs
+- README rewritten with interview-oriented navigation guide
+- Changelog updated with complete version history
+
+---
+
 ## v1.6.0 (2026-04-05)
 
 ### feat

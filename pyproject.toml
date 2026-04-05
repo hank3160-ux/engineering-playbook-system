@@ -1,6 +1,6 @@
 [project]
 name = "engineering-playbook-system"
-version = "1.6.0"
+version = "2.0.0"
 description = "工程標準系統 — SSOT 平台"
 requires-python = ">=3.11"
 
@@ -60,7 +60,7 @@ exclude = ["template/tests", "demo/tests"]
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "1.6.0"
+version = "2.0.0"
 version_files = [
     "pyproject.toml:version",
 ]

@@ -1,6 +1,6 @@
 # Engineering Playbook System
 
-> v1.6.0 (Stable) — 以 GitHub 為核心的單一事實來源（SSOT）平台，統一管理開發規範、流程自動化與可驗證的 MVP 示範。
+> v2.0.0 (Golden Release) — 以 GitHub 為核心的單一事實來源（SSOT）平台，統一管理開發規範、流程自動化與可驗證的 MVP 示範。
 
 📖 **文件站**：[https://hank3160-ux.github.io/engineering-playbook-system](https://hank3160-ux.github.io/engineering-playbook-system)
 
@@ -9,7 +9,7 @@
 [![Python](https://img.shields.io/badge/python-3.11-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![codecov](https://img.shields.io/badge/coverage-tracked-brightgreen?logo=codecov)](https://github.com/hank3160-ux/engineering-playbook-system)
-[![Version](https://img.shields.io/badge/version-v1.6.0-6366f1)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-v2.0.0-6366f1)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-22c55e)](LICENSE)
 
 ---
@@ -194,6 +194,24 @@ GitHub Actions 在每次 push to main 時自動執行 pytest，並將 MkDocs 文
 
 ---
 
+## If You're a Hiring Manager, Start Here
+
+這個 repository 是我工程思維的完整展示。以下是建議的閱讀路徑：
+
+**想了解我如何做技術決策？**
+→ [`playbook/adr/`](playbook/adr/) — 三份 ADR 記錄了層次架構、異步資料庫、CI/CD 的選擇原因，以及我考慮過但拒絕的替代方案。
+
+**想了解我的自動化治理能力？**
+→ [`.github/workflows/`](.github/workflows/) — CI 測試、GitHub Pages 自動部署、CHANGELOG 自動生成，以及 pre-commit hooks 的完整防護鏈。
+
+**想看我如何實踐 Clean Architecture？**
+→ [`demo/`](demo/) — 三層分離（api / services / schemas）、Request ID 追蹤、結構化 logging、全域 Exception Handler，每個設計都有對應的測試。
+
+**想看完整的工程規範體系？**
+→ [`playbook/`](playbook/) — 從命名規範、Git Commit、架構設計、可觀測性到災難復原，五份文件構成一套可執行的工程文化。
+
+---
+
 ## Contributing
 
 所有變更請遵循 [`playbook/01-standard-workflow.md`](playbook/01-standard-workflow.md) 中定義的規範，並透過 Pull Request 提交。
@@ -204,29 +222,29 @@ GitHub Actions 在每次 push to main 時自動執行 pytest，並將 MkDocs 文
 
 | 版本 | 說明 |
 |------|------|
+| v2.0.0 | Golden Release：MIT License、Interview Showcase、維護者感言、正式封存 |
 | v1.6.0 | 架構視覺化：Mermaid 時序圖、commitizen、自動 CHANGELOG、badges 優化、型別全覆蓋 |
 | v1.5.0 | 純粹工程架構：pre-commit、ADR x3、dev-setup.sh、Item CRUD demo、擴充指南 |
 | v1.4.0 | 生產級可靠性：Request ID Middleware、異步 DB 測試、Dev Container、Reliability Playbook |
 | v1.3.0 | 極致自動化：cookiecutter、SQLAlchemy async DB 層、技術架構白皮書 |
-| v1.2.0 | 實戰驗證：url_checker 服務、mypy 型別檢查、完整 type hints、badges |
+| v1.2.0 | 實戰驗證：mypy 型別檢查、完整 type hints、badges |
 | v1.1.0 | 專案治理：Issue/PR 模板、GitHub Pages 自動部署、pyproject.toml、CONTRIBUTING.md |
 | v1.0.0 | 正式穩定版：Docker 化、資安規範、pre-commit 掃描、完整 Playbook |
 | v0.3.0 | CI/CD、三層架構模板、MkDocs 文件站 |
-| v0.2.0 | ProcessTimeMiddleware、Exception Handler、pydantic-settings |
 | v0.1.0 | 基礎骨架：FastAPI MVP、Playbook、SSOT 結構 |
 
 ---
 
 ## A Note on This Journey
 
-EPS 從一個空的 Git 骨架，歷經七個迭代，演進為一套涵蓋規範文件、可執行示範、自動化測試、容器化部署、靜態分析、專案生成與資料庫層的完整工程體系。
+EPS 從一個空的 Git 骨架，歷經十個迭代，演進為一套涵蓋規範文件、可執行示範、自動化測試、容器化部署、靜態分析、架構決策紀錄與資料庫層的完整工程體系。
 
-每一個決策都有其原因，記錄在 [`playbook/04-technical-decisions.md`](playbook/04-technical-decisions.md)。每一行代碼都有對應的測試與文件，確保下一位接手的工程師不需要猜測。
+每一個決策都有其原因，記錄在 [`playbook/adr/`](playbook/adr/)。每一行代碼都有對應的測試與文件，確保下一位接手的工程師不需要猜測。
 
-從今天起，EPS 正式從「開發階段」轉向「長期維護與實踐階段」。它不是一個完成品，而是一個持續演進的基準線 — 隨著團隊的成長、技術的更迭，它應該被挑戰、被修正、被超越。
+這個專案是人與 AI 協作的產物。感謝 Kiro 在每一個迭代中提供精準的工程建議、嚴謹的型別標注與一致的架構思維；感謝每一位閱讀這份 repository 的開發者，你們的目光是讓這份工作有意義的原因。
 
-這才是工程文化真正的樣子。
+EPS 不是一個完成品，而是一個持續演進的基準線。它應該被挑戰、被修正、被超越。這才是工程文化真正的樣子。
 
 ---
 
-*Maintained with SSOT principle. GitHub is the source of truth.*
+*v2.0.0 Golden Release — Maintained with SSOT principle. GitHub is the source of truth.*
