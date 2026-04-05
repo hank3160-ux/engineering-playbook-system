@@ -1,10 +1,20 @@
 """
 Structured logging module — 統一 logging 設定。
-所有服務模組應從此處取得 logger，確保格式一致。
+自動在每條 log 注入當前請求的 request_id（透過 contextvars）。
 """
 
 import logging
 import sys
+
+from demo.context import get_request_id
+
+
+class RequestIdFilter(logging.Filter):
+    """將當前 request_id 注入每條 LogRecord。"""
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        record.request_id = get_request_id() or "-"
+        return True
 
 
 def get_logger(name: str, level: str | None = None) -> logging.Logger:
@@ -12,15 +22,10 @@ def get_logger(name: str, level: str | None = None) -> logging.Logger:
     取得已設定的 logger 實例。
 
     Args:
-        name: logger 名稱，建議使用 __name__
+        name:  logger 名稱，建議使用 __name__
         level: log 等級（DEBUG/INFO/WARNING/ERROR），預設 INFO
-
-    Returns:
-        設定完成的 Logger 實例
     """
     logger = logging.getLogger(name)
-
-    # 避免重複添加 handler
     if logger.handlers:
         return logger
 
@@ -29,12 +34,10 @@ def get_logger(name: str, level: str | None = None) -> logging.Logger:
 
     handler = logging.StreamHandler(sys.stdout)
     handler.setLevel(log_level)
-
-    formatter = logging.Formatter(
-        fmt="%(asctime)s | %(levelname)-8s | %(name)s | %(message)s",
+    handler.addFilter(RequestIdFilter())
+    handler.setFormatter(logging.Formatter(
+        fmt="%(asctime)s | %(levelname)-8s | %(request_id)s | %(name)s | %(message)s",
         datefmt="%Y-%m-%dT%H:%M:%S",
-    )
-    handler.setFormatter(formatter)
+    ))
     logger.addHandler(handler)
-
     return logger

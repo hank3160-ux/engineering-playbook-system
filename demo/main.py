@@ -1,9 +1,10 @@
 """
-Engineering Playbook System — FastAPI MVP (v2)
-新增：ProcessTimeMiddleware、Global Exception Handler、URL Checker
+Engineering Playbook System — FastAPI MVP (v1.4.0)
+新增：Request ID Middleware、Trace ID 自動注入 logger
 """
 
 import time
+import uuid
 from collections.abc import Awaitable, Callable
 from datetime import datetime, timezone
 
@@ -12,6 +13,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 from demo.api.url_checker import router as url_checker_router
+from demo.context import get_request_id, request_id_var
 from demo.logger import get_logger
 
 logger = get_logger(__name__)
@@ -19,14 +21,35 @@ logger = get_logger(__name__)
 app = FastAPI(
     title="Engineering Playbook System",
     description="工程標準系統 MVP — SSOT Demo",
-    version="1.1.0",
+    version="1.4.0",
 )
 
 _start_time = time.time()
 
 
 # ---------------------------------------------------------------------------
-# Middleware — 記錄每個請求的處理耗時，並寫入 Response Header
+# Middleware 1 — Request ID：生成並注入 contextvars，寫入 Response Header
+# ---------------------------------------------------------------------------
+
+@app.middleware("http")
+async def request_id_middleware(
+    request: Request,
+    call_next: Callable[[Request], Awaitable[Response]],
+) -> Response:
+    # 優先使用 client 傳入的 X-Request-ID，否則自動生成
+    request_id = request.headers.get("X-Request-ID") or str(uuid.uuid4())
+    token = request_id_var.set(request_id)
+    try:
+        response = await call_next(request)
+    finally:
+        request_id_var.reset(token)
+
+    response.headers["X-Request-ID"] = request_id
+    return response
+
+
+# ---------------------------------------------------------------------------
+# Middleware 2 — Process Time：記錄耗時並寫入 Response Header
 # ---------------------------------------------------------------------------
 
 @app.middleware("http")
@@ -50,21 +73,23 @@ async def process_time_middleware(
 
 
 # ---------------------------------------------------------------------------
-# Exception Handler — 確保所有未捕捉例外回傳 JSON，而非 HTML
+# Exception Handler
 # ---------------------------------------------------------------------------
 
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception) -> JSONResponse:
     logger.error(
-        "Unhandled exception | path=%s | error=%s",
+        "Unhandled exception | path=%s | error=%s | request_id=%s",
         request.url.path,
         exc,
+        get_request_id(),
     )
     return JSONResponse(
         status_code=500,
         content={
             "error": "internal_server_error",
             "detail": "An unexpected error occurred",
+            "request_id": get_request_id(),
         },
     )
 
@@ -75,7 +100,7 @@ async def global_exception_handler(request: Request, exc: Exception) -> JSONResp
 
 @app.on_event("startup")
 async def on_startup() -> None:
-    logger.info("Service starting up — Engineering Playbook System v1.1.0")
+    logger.info("Service starting up — Engineering Playbook System v1.4.0")
 
 
 @app.on_event("shutdown")
@@ -98,7 +123,9 @@ class HealthResponse(BaseModel):
 async def health_check() -> HealthResponse:
     """
     回傳系統健康狀態。
-    Response Header `X-Process-Time-Ms` 包含本次請求處理耗時（毫秒）。
+    Response Headers:
+    - X-Request-ID: 本次請求的唯一追蹤 ID
+    - X-Process-Time-Ms: 處理耗時（毫秒）
     """
     uptime = round(time.time() - _start_time, 2)
     now = datetime.now(timezone.utc).isoformat()
@@ -106,7 +133,7 @@ async def health_check() -> HealthResponse:
 
     return HealthResponse(
         status="ok",
-        version="1.1.0",
+        version="1.4.0",
         uptime_seconds=uptime,
         timestamp=now,
     )

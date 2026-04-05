@@ -24,7 +24,7 @@ jobs:
         run: pip install -r demo/requirements.txt
 
       - name: Install test dependencies
-        run: pip install pytest httpx
+        run: pip install pytest httpx pytest-asyncio aiosqlite pydantic-settings
 
       - name: Run tests
         run: pytest demo/tests/ -v

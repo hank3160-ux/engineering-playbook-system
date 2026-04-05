@@ -1,6 +1,6 @@
 # Engineering Playbook System
 
-> v1.0 穩定版 — 以 GitHub 為核心的單一事實來源（SSOT）平台，統一管理開發規範、流程自動化與可驗證的 MVP 示範。
+> v1.4.0 (Stable) — 以 GitHub 為核心的單一事實來源（SSOT）平台，統一管理開發規範、流程自動化與可驗證的 MVP 示範。
 
 📖 **文件站**：[https://hank3160-ux.github.io/engineering-playbook-system](https://hank3160-ux.github.io/engineering-playbook-system)
 
@@ -9,6 +9,7 @@
 ![Python](https://img.shields.io/badge/python-3.11-blue?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688?logo=fastapi&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-green)
+![Version](https://img.shields.io/badge/version-v1.4.0-indigo)
 
 ---
 
@@ -101,8 +102,11 @@ engineering-playbook-system/
 pip install -r demo/requirements.txt
 uvicorn demo.main:app --reload
 
-# 驗證（Response Header 含 X-Process-Time-Ms）
+# 驗證（Response Headers 含 X-Request-ID 與 X-Process-Time-Ms）
 curl -i http://localhost:8000/health
+
+# 傳入自訂 Request ID（方便分散式追蹤）
+curl -i -H "X-Request-ID: my-trace-123" http://localhost:8000/health
 ```
 
 ---
@@ -191,6 +195,7 @@ GitHub Actions 在每次 push to main 時自動執行 pytest，並將 MkDocs 文
 
 | 版本 | 說明 |
 |------|------|
+| v1.4.0 | 生產級可靠性：Request ID Middleware、異步 DB 測試、Dev Container、Reliability Playbook |
 | v1.3.0 | 極致自動化：cookiecutter、SQLAlchemy async DB 層、技術架構白皮書 |
 | v1.2.0 | 實戰驗證：url_checker 服務、mypy 型別檢查、完整 type hints、badges |
 | v1.1.0 | 專案治理：Issue/PR 模板、GitHub Pages 自動部署、pyproject.toml、CONTRIBUTING.md |
