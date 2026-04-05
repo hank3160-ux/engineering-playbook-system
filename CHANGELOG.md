@@ -11,6 +11,13 @@ Commit format follows [Conventional Commits](https://www.conventionalcommits.org
 
 ### Fix
 
+- force clean gh-pages redeploy to fix CONTRIBUTING case sensitivity
+- replace all .md links in README with MkDocs site URLs
+- force redeploy to clear stale gh-pages artifacts
+- add missing index files for directory routing
+- enforce directory URLs and remove .md extensions
+- manual recovery for landing pages and case-sensitivity
+- final 404 resolution with clean URLs and case-sensitivity
 - add missing index files and cleanup mkdocs config
 - update navigation and file structure for docs
 - final path correction for how-to-extend
