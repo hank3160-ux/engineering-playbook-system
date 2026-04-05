@@ -91,7 +91,7 @@ engineering-playbook-system/
 | [`demo/`](demo/) | FastAPI MVP — ProcessTimeMiddleware、Exception Handler、pytest |
 | [`template/`](template/) | 標準 Python 專案模板（三層架構，可直接複製） |
 | [`scripts/check-secrets.sh`](scripts/check-secrets.sh) | Pre-commit 敏感資料掃描腳本 |
-| [`CONTRIBUTING.md`](CONTRIBUTING.md) | 貢獻指南 — 如何使用 template/ 啟動新專案 |
+| [`contributing/`](contributing/) | 貢獻指南 — 如何使用 template/ 啟動新專案 |
 | [`pyproject.toml`](pyproject.toml) | ruff linter 與 pytest 統一設定 |
 
 ---

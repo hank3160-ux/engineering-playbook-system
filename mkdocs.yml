@@ -10,12 +10,17 @@ theme:
 
 nav:
   - Home: index.md
-  - Playbook: 
+  - Playbook:
       - 總覽: playbook/index.md
       - 標準流程: playbook/01-standard-workflow.md
       - 架構品質: playbook/02-architecture-and-quality.md
+      - 可觀測性與資安: playbook/03-observability-and-security.md
+      - 技術決策: playbook/04-technical-decisions.md
+      - 可靠性清單: playbook/05-reliability-checklist.md
   - ADR:
       - 紀錄總覽: playbook/adr/index.md
       - ADR-001: playbook/adr/ADR-001-layered-architecture.md
+      - ADR-002: playbook/adr/ADR-002-async-database.md
+      - ADR-003: playbook/adr/ADR-003-cicd-design.md
   - Guides: how-to-extend.md
-  - Contributing: CONTRIBUTING.md
+  - Contributing: contributing.md
