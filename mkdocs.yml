@@ -32,6 +32,7 @@ nav:
       - Standard Workflow: playbook/01-standard-workflow.md
       - Architecture & Quality: playbook/02-architecture-and-quality.md
       - Observability & Security: playbook/03-observability-and-security.md
+      - Technical Decisions: playbook/04-technical-decisions.md
   - Contributing: CONTRIBUTING.md
 
 markdown_extensions:

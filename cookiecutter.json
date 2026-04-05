@@ -1,0 +1,12 @@
+{
+  "project_name": "my-new-service",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
+  "version": "0.1.0",
+  "description": "A service built on Engineering Playbook System template",
+  "author": "Your Name",
+  "python_version": "3.11",
+  "include_database": ["no", "yes"],
+  "database_url": "postgresql+asyncpg://user:password@localhost:5432/{{ cookiecutter.project_slug }}",
+  "include_docker": ["yes", "no"],
+  "log_level": ["INFO", "DEBUG", "WARNING", "ERROR"]
+}

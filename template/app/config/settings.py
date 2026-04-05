@@ -25,6 +25,9 @@ class Settings(BaseSettings):
     # 日誌等級
     log_level: str = "INFO"
 
+    # 資料庫（選用，include_database=yes 時啟用）
+    database_url: str = "postgresql+asyncpg://user:password@localhost:5432/mydb"
+
 
 # 單例 — 全域共用同一份設定
 settings = Settings()

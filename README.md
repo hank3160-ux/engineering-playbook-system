@@ -191,7 +191,9 @@ GitHub Actions 在每次 push to main 時自動執行 pytest，並將 MkDocs 文
 
 | 版本 | 說明 |
 |------|------|
+| v1.3.0 | 極致自動化：cookiecutter、SQLAlchemy async DB 層、技術架構白皮書 |
 | v1.2.0 | 實戰驗證：url_checker 服務、mypy 型別檢查、完整 type hints、badges |
+| v1.1.0 | 專案治理：Issue/PR 模板、GitHub Pages 自動部署、pyproject.toml、CONTRIBUTING.md |
 | v1.0.0 | 正式穩定版：Docker 化、資安規範、pre-commit 掃描、完整 Playbook |
 | v0.3.0 | CI/CD、三層架構模板、MkDocs 文件站 |
 | v0.2.0 | ProcessTimeMiddleware、Exception Handler、pydantic-settings |
@@ -199,6 +201,16 @@ GitHub Actions 在每次 push to main 時自動執行 pytest，並將 MkDocs 文
 
 ---
 
-*v1.0 穩定版 — Maintained with SSOT principle. GitHub is the source of truth.*
+## A Note on This Journey
 
-| v1.1.0 | 專案治理：Issue/PR 模板、GitHub Pages 自動部署、pyproject.toml、CONTRIBUTING.md |
+EPS 從一個空的 Git 骨架，歷經七個迭代，演進為一套涵蓋規範文件、可執行示範、自動化測試、容器化部署、靜態分析、專案生成與資料庫層的完整工程體系。
+
+每一個決策都有其原因，記錄在 [`playbook/04-technical-decisions.md`](playbook/04-technical-decisions.md)。每一行代碼都有對應的測試與文件，確保下一位接手的工程師不需要猜測。
+
+從今天起，EPS 正式從「開發階段」轉向「長期維護與實踐階段」。它不是一個完成品，而是一個持續演進的基準線 — 隨著團隊的成長、技術的更迭，它應該被挑戰、被修正、被超越。
+
+這才是工程文化真正的樣子。
+
+---
+
+*Maintained with SSOT principle. GitHub is the source of truth.*
