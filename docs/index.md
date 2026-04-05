@@ -116,7 +116,7 @@ curl -i http://localhost:8000/health
 # Response Headers 含 X-Request-ID 與 X-Process-Time-Ms
 ```
 
-想了解如何擴充架構，請參考 [How to Extend](docs/how-to-extend.md)。
+想了解如何擴充架構，請參考 [How to Extend](how-to-extend.md)。
 
 ---
 
