@@ -1,0 +1,69 @@
+name: Feature Request
+description: 提議新功能或改進現有功能
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感謝你的建議！請描述你希望解決的問題與預期的解決方案。
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 問題背景
+      description: 這個功能要解決什麼問題？
+      placeholder: 當我需要 ... 時，目前沒有辦法 ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: 建議的解決方案
+      description: 你希望如何實作這個功能？
+      placeholder: 可以在 ... 加入 ... 來解決這個問題
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 考慮過的替代方案
+      description: 你是否考慮過其他做法？為什麼選擇這個方案？
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 影響範圍
+      options:
+        - demo/ (MVP 示範)
+        - template/ (專案模板)
+        - playbook/ (工程規範)
+        - CI/CD (.github/workflows)
+        - docs (MkDocs)
+        - scripts/ (工具腳本)
+        - 其他
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 優先級（自評）
+      options:
+        - Low — 有更好，沒有也可以
+        - Medium — 會影響開發效率
+        - High — 阻礙核心功能
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 提交前確認
+      options:
+        - label: 我已搜尋過現有 Issues，確認此功能尚未被提議
+          required: true
+        - label: 此功能符合專案的 SSOT 與工程規範原則
+          required: true

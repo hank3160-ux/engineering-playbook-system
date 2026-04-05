@@ -2,7 +2,10 @@
 
 > v1.0 穩定版 — 以 GitHub 為核心的單一事實來源（SSOT）平台，統一管理開發規範、流程自動化與可驗證的 MVP 示範。
 
+📖 **文件站**：[https://hank3160-ux.github.io/engineering-playbook-system](https://hank3160-ux.github.io/engineering-playbook-system)
+
 ![CI](https://github.com/hank3160-ux/engineering-playbook-system/actions/workflows/ci.yml/badge.svg)
+![Docs](https://github.com/hank3160-ux/engineering-playbook-system/actions/workflows/deploy-docs.yml/badge.svg)
 
 ---
 
@@ -83,6 +86,8 @@ engineering-playbook-system/
 | [`demo/`](demo/) | FastAPI MVP — ProcessTimeMiddleware、Exception Handler、pytest |
 | [`template/`](template/) | 標準 Python 專案模板（三層架構，可直接複製） |
 | [`scripts/check-secrets.sh`](scripts/check-secrets.sh) | Pre-commit 敏感資料掃描腳本 |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | 貢獻指南 — 如何使用 template/ 啟動新專案 |
+| [`pyproject.toml`](pyproject.toml) | ruff linter 與 pytest 統一設定 |
 
 ---
 
@@ -162,6 +167,7 @@ mkdocs serve
 
 | 版本 | 說明 |
 |------|------|
+| v1.1.0 | 專案治理：Issue/PR 模板、GitHub Pages 自動部署、pyproject.toml、CONTRIBUTING.md |
 | v1.0.0 | 正式穩定版：Docker 化、資安規範、pre-commit 掃描、完整 Playbook |
 | v0.3.0 | CI/CD、三層架構模板、MkDocs 文件站 |
 | v0.2.0 | ProcessTimeMiddleware、Exception Handler、pydantic-settings |
