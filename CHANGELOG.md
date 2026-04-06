@@ -17,6 +17,7 @@ Commit format follows [Conventional Commits](https://www.conventionalcommits.org
 
 ### Fix
 
+- align toggle icon and text inline, move to right of search bar
 - correct CSS selector to label element for toggle text label
 - remove non-docs links from index table, keep as plain code text
 - replace repo file links with GitHub URLs in index table
