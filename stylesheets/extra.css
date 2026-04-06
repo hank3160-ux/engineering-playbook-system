@@ -1,0 +1,16 @@
+/* Show "Dark Mode" / "Light Mode" label next to the toggle icon */
+.md-header__button[title*="dark"]::after {
+  content: " Dark Mode";
+  font-size: 0.7rem;
+  font-weight: 500;
+  vertical-align: middle;
+  color: var(--md-primary-bg-color);
+}
+
+.md-header__button[title*="light"]::after {
+  content: " Light Mode";
+  font-size: 0.7rem;
+  font-weight: 500;
+  vertical-align: middle;
+  color: var(--md-primary-bg-color);
+}
