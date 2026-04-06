@@ -25,7 +25,24 @@
 
 ---
 
-## 2. Git Commit 規範（Conventional Commits）
+## 2. Git Flow 分支策略
+
+```mermaid
+gitGraph
+    commit id: "Initial"
+    branch develop
+    checkout develop
+    commit id: "Feature Start"
+    branch feature/logic-update
+    checkout feature/logic-update
+    commit
+    checkout develop
+    merge feature/logic-update
+    checkout main
+    merge develop tag: "v2.1.0"
+```
+
+## 3. Git Commit 規範（Conventional Commits）
 
 遵循 [Conventional Commits 1.0.0](https://www.conventionalcommits.org/) 規範。
 

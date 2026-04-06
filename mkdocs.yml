@@ -21,6 +21,13 @@ theme:
     - navigation.indexes
     - navigation.top
 
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.mermaid_format
+
 extra_css:
   - stylesheets/extra.css
 

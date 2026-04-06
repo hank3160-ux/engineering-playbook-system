@@ -25,6 +25,16 @@ your-service-name/
 └── requirements.txt       # 鎖定版本依賴
 ```
 
+### 資料流架構圖
+
+```mermaid
+graph TD
+    Client[Client/API Request] --> API[API Layer/Routers]
+    API --> Service[Service Layer/Business Logic]
+    Service --> Schema[Schema Layer/Validation]
+    Service --> DB[(Database/External API)]
+```
+
 ### 分層原則
 
 | 層級 | 職責 | 禁止事項 |
