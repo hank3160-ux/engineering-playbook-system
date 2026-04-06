@@ -11,6 +11,7 @@ Commit format follows [Conventional Commits](https://www.conventionalcommits.org
 
 ### Feat
 
+- add Dark Mode / Light Mode text label next to toggle icon
 - add bilingual toggle names and navigation.top for home page header
 - add dark/light mode toggle
 
