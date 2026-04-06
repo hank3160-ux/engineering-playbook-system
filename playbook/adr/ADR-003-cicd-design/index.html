@@ -1101,16 +1101,16 @@
 <p>使用 <strong>GitHub Actions</strong> 實作兩條獨立 pipeline：</p>
 <h3 id="pipeline-1ciciyml">Pipeline 1：CI（<code>ci.yml</code>）</h3>
 <p>觸發條件：push to main、PR to main</p>
-<pre><code>checkout → setup Python → install deps → pytest
-</code></pre>
+<div class="highlight"><pre><span></span><code>checkout → setup Python → install deps → pytest
+</code></pre></div>
 <ul>
 <li>使用 <code>actions/setup-python@v5</code> 的 pip cache 加速</li>
 <li>測試範圍：<code>demo/tests/</code>（含異步 DB 測試）</li>
 </ul>
 <h3 id="pipeline-2deploy-docsdeploy-docsyml">Pipeline 2：Deploy Docs（<code>deploy-docs.yml</code>）</h3>
 <p>觸發條件：push to main</p>
-<pre><code>checkout (fetch-depth=0) → install mkdocs-material → mkdocs gh-deploy
-</code></pre>
+<div class="highlight"><pre><span></span><code>checkout (fetch-depth=0) → install mkdocs-material → mkdocs gh-deploy
+</code></pre></div>
 <ul>
 <li><code>fetch-depth: 0</code> 保留完整 git history，供 mkdocs git-dates 插件使用</li>
 <li>部署至 <code>gh-pages</code> 分支，由 GitHub Pages 服務</li>
@@ -1144,8 +1144,8 @@
 </table>
 <h2 id="pre-commit">Pre-commit 整合</h2>
 <p>本地開發透過 <code>.pre-commit-config.yaml</code> 在 commit 前執行 ruff、mypy 與 secret 掃描，在 CI 之前提前攔截問題，縮短回饋循環：</p>
-<pre><code>本地 commit → pre-commit hooks → push → GitHub Actions CI
-</code></pre>
+<div class="highlight"><pre><span></span><code>本地 commit → pre-commit hooks → push → GitHub Actions CI
+</code></pre></div>
 <h2 id="_4">後果</h2>
 <ul>
 <li>正面：兩條 pipeline 職責分離，互不阻擋</li>
@@ -1212,6 +1212,8 @@
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
     
   </body>

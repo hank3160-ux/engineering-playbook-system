@@ -569,7 +569,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        分層原則
+        資料流架構圖
       
     </span>
   </a>
@@ -580,7 +580,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        請求生命週期時序圖
+        分層原則
       
     </span>
   </a>
@@ -589,6 +589,17 @@
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        請求生命週期時序圖
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         錯誤路徑時序圖
@@ -616,7 +627,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         原則
@@ -627,7 +638,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         錯誤回應格式（統一）
@@ -638,7 +649,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
         實作範例
@@ -1107,7 +1118,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        分層原則
+        資料流架構圖
       
     </span>
   </a>
@@ -1118,7 +1129,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        請求生命週期時序圖
+        分層原則
       
     </span>
   </a>
@@ -1127,6 +1138,17 @@
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        請求生命週期時序圖
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         錯誤路徑時序圖
@@ -1154,7 +1176,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         原則
@@ -1165,7 +1187,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         錯誤回應格式（統一）
@@ -1176,7 +1198,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
         實作範例
@@ -1298,7 +1320,7 @@
 <hr />
 <h2 id="1">1. 專案架構規範</h2>
 <h3 id="_1">標準目錄結構</h3>
-<pre><code>your-service-name/
+<div class="highlight"><pre><span></span><code>your-service-name/
 ├── app/
 │   ├── __init__.py
 │   ├── main.py            # FastAPI 入口、middleware、exception handler
@@ -1312,8 +1334,14 @@
 ├── .env.example           # 環境變數範本（可 commit）
 ├── .env                   # 實際環境變數（禁止 commit）
 └── requirements.txt       # 鎖定版本依賴
-</code></pre>
-<h3 id="_2">分層原則</h3>
+</code></pre></div>
+<h3 id="_2">資料流架構圖</h3>
+<pre class="mermaid"><code>graph TD
+    Client[Client/API Request] --&gt; API[API Layer/Routers]
+    API --&gt; Service[Service Layer/Business Logic]
+    Service --&gt; Schema[Schema Layer/Validation]
+    Service --&gt; DB[(Database/External API)]</code></pre>
+<h3 id="_3">分層原則</h3>
 <table>
 <thead>
 <tr>
@@ -1340,8 +1368,8 @@
 </tr>
 </tbody>
 </table>
-<h3 id="_3">請求生命週期時序圖</h3>
-<pre><code class="language-mermaid">sequenceDiagram
+<h3 id="_4">請求生命週期時序圖</h3>
+<pre class="mermaid"><code>sequenceDiagram
     autonumber
     participant C as Client
     participant MW as Middleware&lt;br/&gt;(Request ID + Process Time)
@@ -1363,10 +1391,9 @@
     API--&gt;&gt;MW: 回傳 Response
 
     MW-&gt;&gt;MW: 計算 duration_ms&lt;br/&gt;注入 X-Process-Time-Ms
-    MW--&gt;&gt;C: HTTP Response&lt;br/&gt;(含 X-Request-ID, X-Process-Time-Ms)
-</code></pre>
-<h3 id="_4">錯誤路徑時序圖</h3>
-<pre><code class="language-mermaid">sequenceDiagram
+    MW--&gt;&gt;C: HTTP Response&lt;br/&gt;(含 X-Request-ID, X-Process-Time-Ms)</code></pre>
+<h3 id="_5">錯誤路徑時序圖</h3>
+<pre class="mermaid"><code>sequenceDiagram
     autonumber
     participant C as Client
     participant MW as Middleware
@@ -1380,11 +1407,10 @@
     API--&gt;&gt;EH: 未捕捉 Exception
     EH-&gt;&gt;EH: logger.error()&lt;br/&gt;記錄 request_id + path
     EH--&gt;&gt;MW: JSONResponse(500)
-    MW--&gt;&gt;C: {&quot;error&quot;: &quot;internal_server_error&quot;,&lt;br/&gt;&quot;request_id&quot;: &quot;...&quot;}
-</code></pre>
+    MW--&gt;&gt;C: {"error": "internal_server_error",&lt;br/&gt;"request_id": "..."}</code></pre>
 <hr />
 <h2 id="2">2. 錯誤處理機制</h2>
-<h3 id="_5">原則</h3>
+<h3 id="_6">原則</h3>
 <ol>
 <li><strong>所有 API 錯誤回傳 JSON</strong>，絕不回傳 HTML 錯誤頁面</li>
 <li><strong>區分 operational error 與 programmer error</strong></li>
@@ -1392,34 +1418,34 @@
 <li>Programmer：未預期例外，由 global exception handler 捕捉</li>
 <li><strong>錯誤訊息不洩漏內部細節</strong>（stack trace 只寫進 log，不回傳給 client）</li>
 </ol>
-<h3 id="_6">錯誤回應格式（統一）</h3>
-<pre><code class="language-json">{
-  &quot;error&quot;: &quot;error_code_in_snake_case&quot;,
-  &quot;detail&quot;: &quot;人類可讀的說明&quot;,
-  &quot;request_id&quot;: &quot;optional-correlation-id&quot;
-}
-</code></pre>
-<h3 id="_7">實作範例</h3>
-<pre><code class="language-python">from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import JSONResponse
+<h3 id="_7">錯誤回應格式（統一）</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error_code_in_snake_case&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;人類可讀的說明&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;request_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;optional-correlation-id&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="_8">實作範例</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">HTTPException</span><span class="p">,</span> <span class="n">Request</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.responses</span><span class="w"> </span><span class="kn">import</span> <span class="n">JSONResponse</span>
 
-app = FastAPI()
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
 
-# 1. Global exception handler — 捕捉所有未處理例外
-@app.exception_handler(Exception)
-async def global_exception_handler(request: Request, exc: Exception) -&gt; JSONResponse:
-    logger.error(&quot;Unhandled exception | path=%s | error=%s&quot;, request.url.path, exc)
-    return JSONResponse(
-        status_code=500,
-        content={&quot;error&quot;: &quot;internal_server_error&quot;, &quot;detail&quot;: &quot;An unexpected error occurred&quot;},
-    )
+<span class="c1"># 1. Global exception handler — 捕捉所有未處理例外</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">global_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exc</span><span class="p">:</span> <span class="ne">Exception</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JSONResponse</span><span class="p">:</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Unhandled exception | path=</span><span class="si">%s</span><span class="s2"> | error=</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">exc</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">(</span>
+        <span class="n">status_code</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+        <span class="n">content</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;internal_server_error&quot;</span><span class="p">,</span> <span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;An unexpected error occurred&quot;</span><span class="p">},</span>
+    <span class="p">)</span>
 
-# 2. 業務邏輯中使用 HTTPException
-@app.get(&quot;/items/{item_id}&quot;)
-async def get_item(item_id: int):
-    if item_id &lt;= 0:
-        raise HTTPException(status_code=400, detail=&quot;item_id must be positive&quot;)
-</code></pre>
+<span class="c1"># 2. 業務邏輯中使用 HTTPException</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/items/</span><span class="si">{item_id}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_item</span><span class="p">(</span><span class="n">item_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">item_id</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;item_id must be positive&quot;</span><span class="p">)</span>
+</code></pre></div>
 <h3 id="http">HTTP 狀態碼使用規範</h3>
 <table>
 <thead>
@@ -1498,12 +1524,12 @@ async def get_item(item_id: int):
 </tbody>
 </table>
 <h3 id="log_1">Log 格式規範</h3>
-<pre><code>YYYY-MM-DDTHH:MM:SS | LEVEL    | module.name | message | key=value
-</code></pre>
-<p>範例：</p>
-<pre><code>2026-04-05T10:30:00 | INFO     | app.main | Health check requested | uptime=42.5s
+<div class="highlight"><pre><span></span><code>YYYY-MM-DDTHH:MM:SS | LEVEL    | module.name | message | key=value
+</code></pre></div>
+<p>範例：
+<div class="highlight"><pre><span></span><code>2026-04-05T10:30:00 | INFO     | app.main | Health check requested | uptime=42.5s
 2026-04-05T10:30:01 | ERROR    | app.main | Unhandled exception | path=/items/0 | error=ValueError
-</code></pre>
+</code></pre></div></p>
 <h3 id="log_2">結構化 Log 規則</h3>
 <ul>
 <li>使用 <code>key=value</code> 格式附加上下文，方便 log aggregator 解析</li>
@@ -1512,21 +1538,21 @@ async def get_item(item_id: int):
 <li>使用 <code>ProcessTimeMiddleware</code> 自動記錄每個請求的處理耗時</li>
 </ul>
 <h3 id="middleware-processtimemiddleware">Middleware 實作（ProcessTimeMiddleware）</h3>
-<pre><code class="language-python">import time
-from fastapi import Request
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Request</span>
 
-@app.middleware(&quot;http&quot;)
-async def process_time_middleware(request: Request, call_next):
-    start = time.perf_counter()
-    response = await call_next(request)
-    duration_ms = round((time.perf_counter() - start) * 1000, 2)
-    response.headers[&quot;X-Process-Time-Ms&quot;] = str(duration_ms)
-    logger.info(
-        &quot;Request completed | method=%s | path=%s | status=%d | duration_ms=%.2f&quot;,
-        request.method, request.url.path, response.status_code, duration_ms,
-    )
-    return response
-</code></pre>
+<span class="nd">@app</span><span class="o">.</span><span class="n">middleware</span><span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">process_time_middleware</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">call_next</span><span class="p">):</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">call_next</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="n">duration_ms</span> <span class="o">=</span> <span class="nb">round</span><span class="p">((</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;X-Process-Time-Ms&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">duration_ms</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s2">&quot;Request completed | method=</span><span class="si">%s</span><span class="s2"> | path=</span><span class="si">%s</span><span class="s2"> | status=</span><span class="si">%d</span><span class="s2"> | duration_ms=</span><span class="si">%.2f</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">duration_ms</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span>
+</code></pre></div>
 <hr />
 <h2 id="4-quality-gates">4. 品質門檻（Quality Gates）</h2>
 <p>在 PR 合併前，所有項目必須通過：</p>
@@ -1598,6 +1624,8 @@ async def process_time_middleware(request: Request, call_next):
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
     
   </body>

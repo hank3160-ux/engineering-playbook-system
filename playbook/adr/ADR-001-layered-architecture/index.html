@@ -1022,10 +1022,10 @@
 - 新成員難以快速定位「這段邏輯在哪裡」</p>
 <h2 id="_2">決策</h2>
 <p>採用三層分離架構：</p>
-<pre><code>api/       ← HTTP 層：處理 request/response、status code、路由定義
+<div class="highlight"><pre><span></span><code>api/       ← HTTP 層：處理 request/response、status code、路由定義
 services/  ← 業務層：純 Python 邏輯，不依賴 HTTP 框架
 schemas/   ← 資料層：Pydantic model，定義輸入驗證與輸出序列化
-</code></pre>
+</code></pre></div>
 <p><code>main.py</code> 只負責組裝（掛載 middleware、router），不含任何業務邏輯。</p>
 <h2 id="_3">考慮過的替代方案</h2>
 <table>
@@ -1116,6 +1116,8 @@ schemas/   ← 資料層：Pydantic model，定義輸入驗證與輸出序列化
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
     
   </body>

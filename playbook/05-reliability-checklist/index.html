@@ -1479,23 +1479,23 @@
 </tbody>
 </table>
 <h3 id="locust">Locust 基礎範例</h3>
-<pre><code class="language-python"># locustfile.py
-from locust import HttpUser, task, between
+<div class="highlight"><pre><span></span><code><span class="c1"># locustfile.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">locust</span><span class="w"> </span><span class="kn">import</span> <span class="n">HttpUser</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">between</span>
 
-class ApiUser(HttpUser):
-    wait_time = between(0.5, 2)  # 模擬真實使用者思考時間
+<span class="k">class</span><span class="w"> </span><span class="nc">ApiUser</span><span class="p">(</span><span class="n">HttpUser</span><span class="p">):</span>
+    <span class="n">wait_time</span> <span class="o">=</span> <span class="n">between</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># 模擬真實使用者思考時間</span>
 
-    @task(3)
-    def health_check(self) -&gt; None:
-        self.client.get(&quot;/health&quot;)
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">health_check</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/health&quot;</span><span class="p">)</span>
 
-    @task(1)
-    def check_url(self) -&gt; None:
-        self.client.post(&quot;/url-checker/check&quot;, json={&quot;url&quot;: &quot;https://example.com&quot;})
-</code></pre>
-<pre><code class="language-bash"># 執行：100 個並發使用者，每秒新增 10 個，持續 60 秒
-locust -f locustfile.py --headless -u 100 -r 10 -t 60s --host http://localhost:8000
-</code></pre>
+    <span class="nd">@task</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">check_url</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/url-checker/check&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://example.com&quot;</span><span class="p">})</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># 執行：100 個並發使用者，每秒新增 10 個，持續 60 秒</span>
+locust<span class="w"> </span>-f<span class="w"> </span>locustfile.py<span class="w"> </span>--headless<span class="w"> </span>-u<span class="w"> </span><span class="m">100</span><span class="w"> </span>-r<span class="w"> </span><span class="m">10</span><span class="w"> </span>-t<span class="w"> </span>60s<span class="w"> </span>--host<span class="w"> </span>http://localhost:8000
+</code></pre></div>
 <h3 id="_3">負載測試通過標準</h3>
 <ul>
 <li>P50 延遲 ≤ 100ms</li>
@@ -1508,7 +1508,7 @@ locust -f locustfile.py --headless -u 100 -r 10 -t 60s --host http://localhost:8
 <h3 id="_4">目標</h3>
 <p>找出系統的「斷點」— 在什麼流量下開始出現錯誤或延遲劇增。</p>
 <h3 id="_5">測試策略</h3>
-<pre><code>流量
+<div class="highlight"><pre><span></span><code>流量
   │
   │                    ← 斷點（開始出現錯誤）
   │               ╱‾‾‾
@@ -1517,7 +1517,7 @@ locust -f locustfile.py --headless -u 100 -r 10 -t 60s --host http://localhost:8
   │╱‾‾‾
   └──────────────────── 時間
   逐步增加流量，觀察延遲與錯誤率的變化點
-</code></pre>
+</code></pre></div>
 <h3 id="_6">執行步驟</h3>
 <ol>
 <li>從正常負載的 50% 開始</li>
@@ -1527,9 +1527,9 @@ locust -f locustfile.py --headless -u 100 -r 10 -t 60s --host http://localhost:8
 <li>斷點流量即為系統容量上限，SLO 應設為其 70%</li>
 </ol>
 <h3 id="_7">觀察指標</h3>
-<pre><code class="language-bash"># 即時監控（搭配 ProcessTimeMiddleware log）
-tail -f app.log | grep &quot;duration_ms&quot; | awk -F'duration_ms=' '{print $2}'
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># 即時監控（搭配 ProcessTimeMiddleware log）</span>
+tail<span class="w"> </span>-f<span class="w"> </span>app.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;duration_ms&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="s1">&#39;duration_ms=&#39;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span>
+</code></pre></div>
 <hr />
 <h2 id="3-disaster-recovery">3. 災難復原（Disaster Recovery）</h2>
 <h3 id="rto-rpo">RTO / RPO 定義</h3>
@@ -1574,33 +1574,33 @@ tail -f app.log | grep &quot;duration_ms&quot; | awk -F'duration_ms=' '{print $2
 <li>[ ] 更新 RTO/RPO 目標，反映業務成長</li>
 </ul>
 <h3 id="sop">快速復原 SOP</h3>
-<pre><code class="language-bash"># 1. 確認服務狀態
-docker compose ps
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. 確認服務狀態</span>
+docker<span class="w"> </span>compose<span class="w"> </span>ps
 
-# 2. 查看最近 100 行 log
-docker compose logs --tail=100 api
+<span class="c1"># 2. 查看最近 100 行 log</span>
+docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>--tail<span class="o">=</span><span class="m">100</span><span class="w"> </span>api
 
-# 3. 強制重啟服務
-docker compose restart api
+<span class="c1"># 3. 強制重啟服務</span>
+docker<span class="w"> </span>compose<span class="w"> </span>restart<span class="w"> </span>api
 
-# 4. 若映像損壞，重新建置
-docker compose up --build --force-recreate api
+<span class="c1"># 4. 若映像損壞，重新建置</span>
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>--build<span class="w"> </span>--force-recreate<span class="w"> </span>api
 
-# 5. 驗證恢復
-curl -i http://localhost:8000/health
-</code></pre>
+<span class="c1"># 5. 驗證恢復</span>
+curl<span class="w"> </span>-i<span class="w"> </span>http://localhost:8000/health
+</code></pre></div>
 <hr />
 <h2 id="4">4. 可靠性設計原則</h2>
 <h3 id="fail-fast">Fail Fast</h3>
 <p>服務啟動時若缺少必要設定（如 <code>DATABASE_URL</code>），應立即拋出例外並停止啟動，而非在運行中途才崩潰。pydantic-settings 的型別驗證天然實現此原則。</p>
 <h3 id="graceful-degradation">Graceful Degradation</h3>
 <p>當非核心依賴（如外部 API）失敗時，服務應降級而非完全崩潰：</p>
-<pre><code class="language-python">try:
-    result = await external_service.call()
-except Exception:
-    logger.warning(&quot;External service unavailable, using fallback&quot;)
-    result = fallback_value  # 回傳快取或預設值
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">external_service</span><span class="o">.</span><span class="n">call</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;External service unavailable, using fallback&quot;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">fallback_value</span>  <span class="c1"># 回傳快取或預設值</span>
+</code></pre></div>
 <h3 id="circuit-breaker">Circuit Breaker 概念</h3>
 <p>當下游服務連續失敗超過閾值，暫時停止呼叫（open circuit），避免雪崩效應。推薦使用 <a href="https://tenacity.readthedocs.io/">tenacity</a> 實作重試與熔斷邏輯。</p>
 <hr />
@@ -1673,6 +1673,8 @@ except Exception:
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
     
   </body>

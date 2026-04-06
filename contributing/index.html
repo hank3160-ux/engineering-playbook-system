@@ -1101,23 +1101,23 @@
 <hr />
 <h2 id="template">使用 template/ 啟動新專案</h2>
 <p><code>template/</code> 是一個可直接複製的標準 Python 服務骨架，內建三層架構、logging、環境變數管理與測試範例。</p>
-<pre><code class="language-bash"># 1. 複製模板到新目錄
-cp -r template/ ../your-new-service
-cd ../your-new-service
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. 複製模板到新目錄</span>
+cp<span class="w"> </span>-r<span class="w"> </span>template/<span class="w"> </span>../your-new-service
+<span class="nb">cd</span><span class="w"> </span>../your-new-service
 
-# 2. 建立環境變數檔
-cp .env.example .env
-# 編輯 .env，至少設定 APP_NAME
+<span class="c1"># 2. 建立環境變數檔</span>
+cp<span class="w"> </span>.env.example<span class="w"> </span>.env
+<span class="c1"># 編輯 .env，至少設定 APP_NAME</span>
 
-# 3. 安裝依賴
-pip install -r requirements.txt
+<span class="c1"># 3. 安裝依賴</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 
-# 4. 啟動服務
-uvicorn app.main:app --reload
+<span class="c1"># 4. 啟動服務</span>
+uvicorn<span class="w"> </span>app.main:app<span class="w"> </span>--reload
 
-# 5. 執行測試
-pytest tests/ -v
-</code></pre>
+<span class="c1"># 5. 執行測試</span>
+pytest<span class="w"> </span>tests/<span class="w"> </span>-v
+</code></pre></div>
 <h3 id="_1">模板結構說明</h3>
 <table>
 <thead>
@@ -1153,8 +1153,8 @@ pytest tests/ -v
 <hr />
 <h2 id="_2">提交變更流程</h2>
 <h3 id="1-fork-branch">1. Fork &amp; Branch</h3>
-<pre><code class="language-bash">git checkout -b feat/your-feature-name
-</code></pre>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feat/your-feature-name
+</code></pre></div>
 <p>分支命名遵循 <code>&lt;type&gt;/&lt;short-description&gt;</code>，type 同 Conventional Commits。</p>
 <h3 id="2">2. 開發</h3>
 <ul>
@@ -1162,16 +1162,16 @@ pytest tests/ -v
 <li>架構決策參考 <a href="../playbook/02-architecture-and-quality/"><code>playbook/02-architecture-and-quality</code></a></li>
 </ul>
 <h3 id="3">3. 本地驗證</h3>
-<pre><code class="language-bash"># Lint
-pip install ruff
-ruff check .
+<div class="highlight"><pre><span></span><code><span class="c1"># Lint</span>
+pip<span class="w"> </span>install<span class="w"> </span>ruff
+ruff<span class="w"> </span>check<span class="w"> </span>.
 
-# 測試
+<span class="c1"># 測試</span>
 pytest
 
-# 安全掃描
-bash scripts/check-secrets.sh
-</code></pre>
+<span class="c1"># 安全掃描</span>
+bash<span class="w"> </span>scripts/check-secrets.sh
+</code></pre></div>
 <h3 id="4-pull-request">4. 提交 Pull Request</h3>
 <ul>
 <li>使用 PR 模板填寫所有 checkbox</li>
@@ -1241,6 +1241,8 @@ bash scripts/check-secrets.sh
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
     
   </body>

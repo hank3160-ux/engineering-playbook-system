@@ -1301,10 +1301,10 @@
 <h3 id="ssot">決策：單一事實來源（SSOT）</h3>
 <p>所有規範、設定、架構決策集中於 GitHub repository，任何變更皆透過 Pull Request 審查。這消除了「口耳相傳的規範」與「文件與代碼不一致」兩個最常見的維護債。</p>
 <h3 id="_1">決策：三層架構分離</h3>
-<pre><code>api/       ← HTTP 細節（status code、request parsing）
+<div class="highlight"><pre><span></span><code>api/       ← HTTP 細節（status code、request parsing）
 services/  ← 業務邏輯（可獨立測試，不依賴 HTTP）
 schemas/   ← 資料契約（輸入驗證、輸出序列化）
-</code></pre>
+</code></pre></div>
 <p>每層職責單一，修改一層不影響其他層。Service 層可在不啟動 HTTP server 的情況下直接單元測試，大幅降低測試成本。</p>
 <h3 id="pydantic-settings">決策：pydantic-settings 管理環境變數</h3>
 <p>所有設定從環境變數讀取，型別由 Pydantic 自動驗證。服務啟動時若缺少必要設定會立即失敗（fail-fast），而非在運行中途才崩潰，縮短問題定位時間。</p>
@@ -1429,6 +1429,8 @@ schemas/   ← 資料契約（輸入驗證、輸出序列化）
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
     
   </body>

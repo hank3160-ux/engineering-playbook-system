@@ -1041,18 +1041,18 @@
 <p>FastAPI 基於 asyncio，若資料庫操作使用同步驅動（如 psycopg2），會阻塞 event loop，在高並發場景下造成嚴重的效能瓶頸。</p>
 <h2 id="_2">決策</h2>
 <p>採用 <strong>SQLAlchemy 2.x + asyncpg</strong> 作為異步資料庫解決方案：</p>
-<pre><code class="language-python">engine = create_async_engine(
-    &quot;postgresql+asyncpg://...&quot;,
-    pool_pre_ping=True,
-    pool_size=10,
-)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">engine</span> <span class="o">=</span> <span class="n">create_async_engine</span><span class="p">(</span>
+    <span class="s2">&quot;postgresql+asyncpg://...&quot;</span><span class="p">,</span>
+    <span class="n">pool_pre_ping</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">pool_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
 <p>Session 透過 FastAPI <code>Depends</code> 注入，生命週期由框架管理：</p>
-<pre><code class="language-python">async def get_db_session() -&gt; AsyncGenerator[AsyncSession, None]:
-    async with AsyncSessionFactory() as session:
-        yield session
-        await session.commit()
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_db_session</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">AsyncGenerator</span><span class="p">[</span><span class="n">AsyncSession</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">AsyncSessionFactory</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">session</span>
+        <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div>
 <h2 id="_3">考慮過的替代方案</h2>
 <table>
 <thead>
@@ -1082,8 +1082,8 @@
 </table>
 <h2 id="_4">測試策略</h2>
 <p>生產使用 PostgreSQL + asyncpg，測試使用 SQLite + aiosqlite（in-memory），確保測試環境與生產完全隔離，且無需啟動真實資料庫：</p>
-<pre><code class="language-python">TEST_DATABASE_URL = &quot;sqlite+aiosqlite:///:memory:&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">TEST_DATABASE_URL</span> <span class="o">=</span> <span class="s2">&quot;sqlite+aiosqlite:///:memory:&quot;</span>
+</code></pre></div>
 <h2 id="_5">後果</h2>
 <ul>
 <li>正面：資料庫操作不阻塞 event loop，支援高並發</li>
@@ -1150,6 +1150,8 @@
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
     
   </body>

@@ -1399,8 +1399,8 @@
 <h2 id="1">1. 日誌規範</h2>
 <h3 id="_1">格式標準</h3>
 <p>所有服務使用統一格式，方便 log aggregator（如 CloudWatch、Datadog）解析：</p>
-<pre><code>YYYY-MM-DDTHH:MM:SS | LEVEL    | module | message | key=value pairs
-</code></pre>
+<div class="highlight"><pre><span></span><code>YYYY-MM-DDTHH:MM:SS | LEVEL    | module | message | key=value pairs
+</code></pre></div>
 <h3 id="_2">必要欄位</h3>
 <p>每個請求的 log 必須包含：</p>
 <table>
@@ -1441,11 +1441,11 @@
 <li>信用卡號或任何金融資料</li>
 </ul>
 <h3 id="log_1">Log 等級使用規範</h3>
-<pre><code>DEBUG   → 開發環境除錯，正式環境關閉
+<div class="highlight"><pre><span></span><code>DEBUG   → 開發環境除錯，正式環境關閉
 INFO    → 正常業務事件（請求進入、服務啟動）
 WARNING → 可恢復的異常（重試、降級、慢查詢）
 ERROR   → 需人工介入（例外捕捉、外部服務失敗）
-</code></pre>
+</code></pre></div>
 <hr />
 <h2 id="2-slis-slos">2. 監控指標：SLIs / SLOs</h2>
 <h3 id="_3">概念定義</h3>
@@ -1487,13 +1487,13 @@ ERROR   → 需人工介入（例外捕捉、外部服務失敗）
 </tbody>
 </table>
 <h3 id="_4">實作建議</h3>
-<pre><code class="language-python"># 在 ProcessTimeMiddleware 中記錄可量測的指標
-logger.info(
-    &quot;request | method=%s | path=%s | status=%d | duration_ms=%.2f&quot;,
-    request.method, request.url.path, response.status_code, duration_ms
-)
-# 搭配 log aggregator 建立 dashboard 與告警規則
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># 在 ProcessTimeMiddleware 中記錄可量測的指標</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+    <span class="s2">&quot;request | method=</span><span class="si">%s</span><span class="s2"> | path=</span><span class="si">%s</span><span class="s2"> | status=</span><span class="si">%d</span><span class="s2"> | duration_ms=</span><span class="si">%.2f</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">duration_ms</span>
+<span class="p">)</span>
+<span class="c1"># 搭配 log aggregator 建立 dashboard 與告警規則</span>
+</code></pre></div>
 <hr />
 <h2 id="3-sop">3. 金鑰管理 SOP</h2>
 <h3 id="_5">原則</h3>
@@ -1540,51 +1540,51 @@ logger.info(
 <hr />
 <h2 id="4">4. 資安防禦清單</h2>
 <h3 id="41">4.1 輸入驗證</h3>
-<pre><code class="language-python"># 使用 Pydantic 自動驗證輸入，拒絕不合法資料
-from pydantic import BaseModel, Field, constr
+<div class="highlight"><pre><span></span><code><span class="c1"># 使用 Pydantic 自動驗證輸入，拒絕不合法資料</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">constr</span>
 
-class CreateItemRequest(BaseModel):
-    name: constr(min_length=1, max_length=100)  # 限制長度
-    quantity: int = Field(gt=0, le=10000)        # 限制範圍
-</code></pre>
+<span class="k">class</span><span class="w"> </span><span class="nc">CreateItemRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">constr</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># 限制長度</span>
+    <span class="n">quantity</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>        <span class="c1"># 限制範圍</span>
+</code></pre></div>
 <ul>
 <li>所有 API 輸入透過 Pydantic schema 驗證</li>
 <li>不信任任何來自 client 的資料</li>
 <li>檔案上傳需驗證 MIME type 與大小上限</li>
 </ul>
 <h3 id="42-rate-limiting">4.2 Rate Limiting 建議</h3>
-<pre><code class="language-python"># 使用 slowapi（基於 limits 的 FastAPI rate limiter）
-from slowapi import Limiter
-from slowapi.util import get_remote_address
+<div class="highlight"><pre><span></span><code><span class="c1"># 使用 slowapi（基於 limits 的 FastAPI rate limiter）</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">slowapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Limiter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">slowapi.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_remote_address</span>
 
-limiter = Limiter(key_func=get_remote_address)
+<span class="n">limiter</span> <span class="o">=</span> <span class="n">Limiter</span><span class="p">(</span><span class="n">key_func</span><span class="o">=</span><span class="n">get_remote_address</span><span class="p">)</span>
 
-@app.get(&quot;/health&quot;)
-@limiter.limit(&quot;60/minute&quot;)  # 每 IP 每分鐘最多 60 次
-async def health_check(request: Request):
-    ...
-</code></pre>
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/health&quot;</span><span class="p">)</span>
+<span class="nd">@limiter</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="s2">&quot;60/minute&quot;</span><span class="p">)</span>  <span class="c1"># 每 IP 每分鐘最多 60 次</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">health_check</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+    <span class="o">...</span>
+</code></pre></div>
 <p>建議限制：
 - 公開 API：60 req/min per IP
 - 認證 API：300 req/min per user
 - 登入端點：5 req/min per IP（防暴力破解）</p>
 <h3 id="43-http">4.3 HTTP 安全標頭</h3>
-<pre><code class="language-python">from fastapi.middleware.trustedhost import TrustedHostMiddleware
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.middleware.trustedhost</span><span class="w"> </span><span class="kn">import</span> <span class="n">TrustedHostMiddleware</span>
 
-# 建議加入的 Response Headers
-@app.middleware(&quot;http&quot;)
-async def security_headers(request, call_next):
-    response = await call_next(request)
-    response.headers[&quot;X-Content-Type-Options&quot;] = &quot;nosniff&quot;
-    response.headers[&quot;X-Frame-Options&quot;] = &quot;DENY&quot;
-    response.headers[&quot;Strict-Transport-Security&quot;] = &quot;max-age=31536000&quot;
-    return response
-</code></pre>
+<span class="c1"># 建議加入的 Response Headers</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">middleware</span><span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">security_headers</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">call_next</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">call_next</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;X-Content-Type-Options&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;nosniff&quot;</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;X-Frame-Options&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;DENY&quot;</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Strict-Transport-Security&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;max-age=31536000&quot;</span>
+    <span class="k">return</span> <span class="n">response</span>
+</code></pre></div>
 <h3 id="44">4.4 依賴安全掃描</h3>
-<pre><code class="language-bash"># 定期執行，檢查已知 CVE
-pip install pip-audit
-pip-audit -r requirements.txt
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># 定期執行，檢查已知 CVE</span>
+pip<span class="w"> </span>install<span class="w"> </span>pip-audit
+pip-audit<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</code></pre></div>
 <h3 id="45-pre-commit">4.5 Pre-commit 安全檢查</h3>
 <p>使用 <code>scripts/check-secrets.sh</code> 在 commit 前自動掃描敏感資料（詳見 <code>scripts/</code> 目錄）。</p>
 <hr />
@@ -1657,6 +1657,8 @@ pip-audit -r requirements.txt
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
     
   </body>

@@ -1238,7 +1238,7 @@
 </ul>
 <hr />
 <h2 id="architecture">Architecture</h2>
-<pre><code>engineering-playbook-system/
+<div class="highlight"><pre><span></span><code>engineering-playbook-system/
 │
 ├── .github/workflows/
 │   └── ci.yml                          # GitHub Actions CI（push to main 自動測試）
@@ -1274,9 +1274,9 @@
 ├── docker-compose.yml                  # 一鍵啟動 API + Docs
 ├── mkdocs.yml                          # MkDocs Material 文件站設定
 └── README.md                           # 專案首頁（本文件）
-</code></pre>
+</code></pre></div>
 <h3 id="_1">資料流</h3>
-<pre><code>開發者
+<div class="highlight"><pre><span></span><code>開發者
   │
   ├─► scripts/check-secrets.sh  ──► Pre-commit 安全掃描
   │
@@ -1285,7 +1285,7 @@
   └─► demo/      ──► 實作驗證（FastAPI /health API）
                         │
                         └─► GitHub Actions CI（自動測試）
-</code></pre>
+</code></pre></div>
 <hr />
 <h2 id="_2">目錄導覽</h2>
 <table>
@@ -1345,56 +1345,56 @@
 <hr />
 <h2 id="quick-start">Quick Start</h2>
 <p>EPS 是一個起手式，不是一個要直接部署的服務。以下是推薦的使用流程：</p>
-<pre><code class="language-bash"># 1. 一鍵初始化開發環境（安裝依賴、pre-commit hooks、執行測試）
-bash scripts/dev-setup.sh
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. 一鍵初始化開發環境（安裝依賴、pre-commit hooks、執行測試）</span>
+bash<span class="w"> </span>scripts/dev-setup.sh
 
-# 2. 從 template/ 建立你的新服務
-cp -r template/ ../your-new-service
-cd ../your-new-service
-cp .env.example .env
+<span class="c1"># 2. 從 template/ 建立你的新服務</span>
+cp<span class="w"> </span>-r<span class="w"> </span>template/<span class="w"> </span>../your-new-service
+<span class="nb">cd</span><span class="w"> </span>../your-new-service
+cp<span class="w"> </span>.env.example<span class="w"> </span>.env
 
-# 3. 啟動並驗證
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-curl -i http://localhost:8000/health
-# Response Headers 含 X-Request-ID 與 X-Process-Time-Ms
-</code></pre>
+<span class="c1"># 3. 啟動並驗證</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+uvicorn<span class="w"> </span>app.main:app<span class="w"> </span>--reload
+curl<span class="w"> </span>-i<span class="w"> </span>http://localhost:8000/health
+<span class="c1"># Response Headers 含 X-Request-ID 與 X-Process-Time-Ms</span>
+</code></pre></div>
 <p>想了解如何擴充架構，請參考 <a href="how-to-extend/">How to Extend</a>。</p>
 <hr />
 <h2 id="docker">Docker</h2>
-<pre><code class="language-bash"># 一鍵啟動 API（port 8000）與文件站（port 8080）
-docker compose up --build
+<div class="highlight"><pre><span></span><code><span class="c1"># 一鍵啟動 API（port 8000）與文件站（port 8080）</span>
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>--build
 
-# API 健康檢查
-curl http://localhost:8000/health
+<span class="c1"># API 健康檢查</span>
+curl<span class="w"> </span>http://localhost:8000/health
 
-# 文件站
-open http://localhost:8080
-</code></pre>
+<span class="c1"># 文件站</span>
+open<span class="w"> </span>http://localhost:8080
+</code></pre></div>
 <hr />
 <h2 id="using-the-template">Using the Template</h2>
-<pre><code class="language-bash">cp -r template/ ../your-new-service
-cp your-new-service/.env.example your-new-service/.env
-pip install -r your-new-service/requirements.txt
-uvicorn app.main:app --reload
-</code></pre>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-r<span class="w"> </span>template/<span class="w"> </span>../your-new-service
+cp<span class="w"> </span>your-new-service/.env.example<span class="w"> </span>your-new-service/.env
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>your-new-service/requirements.txt
+uvicorn<span class="w"> </span>app.main:app<span class="w"> </span>--reload
+</code></pre></div>
 <hr />
 <h2 id="security">Security</h2>
 <p>啟用 pre-commit 安全掃描：</p>
-<pre><code class="language-bash"># 安裝為 git hook
-cp scripts/check-secrets.sh .git/hooks/pre-commit
-chmod +x .git/hooks/pre-commit
+<div class="highlight"><pre><span></span><code><span class="c1"># 安裝為 git hook</span>
+cp<span class="w"> </span>scripts/check-secrets.sh<span class="w"> </span>.git/hooks/pre-commit
+chmod<span class="w"> </span>+x<span class="w"> </span>.git/hooks/pre-commit
 
-# 或手動執行
-bash scripts/check-secrets.sh
-</code></pre>
+<span class="c1"># 或手動執行</span>
+bash<span class="w"> </span>scripts/check-secrets.sh
+</code></pre></div>
 <p>掃描項目：明文密碼、API key、AWS Access Key、GitHub Token、OpenAI Key、私鑰等。</p>
 <hr />
 <h2 id="local-docs-preview">Local Docs Preview</h2>
-<pre><code class="language-bash">pip install mkdocs-material
-mkdocs serve
-# 開啟 http://127.0.0.1:8000
-</code></pre>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mkdocs-material
+mkdocs<span class="w"> </span>serve
+<span class="c1"># 開啟 http://127.0.0.1:8000</span>
+</code></pre></div>
 <hr />
 <h2 id="engineering-practices">Engineering Practices</h2>
 <p>此專案完整示範了以下五項核心工程實踐：</p>
@@ -1541,6 +1541,8 @@ GitHub Actions 在每次 push to main 時自動執行 pytest，並將 MkDocs 文
     
     
       <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
       
     
   </body>
