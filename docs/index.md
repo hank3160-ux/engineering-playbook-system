@@ -88,11 +88,11 @@ engineering-playbook-system/
 | [`playbook/01-standard-workflow`](playbook/01-standard-workflow/) | 專案命名準則、Git Commit 規範、環境安全指引 |
 | [`playbook/02-architecture-and-quality`](playbook/02-architecture-and-quality/) | 架構規範、錯誤處理機制、日誌追蹤標準 |
 | [`playbook/03-observability-and-security`](playbook/03-observability-and-security/) | 可觀測性、SLI/SLO、金鑰管理 SOP、資安防禦清單 |
-| [`demo/`](demo/) | FastAPI MVP — ProcessTimeMiddleware、Exception Handler、pytest |
-| [`template/`](template/) | 標準 Python 專案模板（三層架構，可直接複製） |
-| [`scripts/check-secrets.sh`](scripts/check-secrets.sh) | Pre-commit 敏感資料掃描腳本 |
+| [`demo/`](https://github.com/hank3160-ux/engineering-playbook-system/tree/main/demo) | FastAPI MVP — ProcessTimeMiddleware、Exception Handler、pytest |
+| [`template/`](https://github.com/hank3160-ux/engineering-playbook-system/tree/main/template) | 標準 Python 專案模板（三層架構，可直接複製） |
+| [`scripts/check-secrets.sh`](https://github.com/hank3160-ux/engineering-playbook-system/blob/main/scripts/check-secrets.sh) | Pre-commit 敏感資料掃描腳本 |
 | [`contributing/`](contributing/) | 貢獻指南 — 如何使用 template/ 啟動新專案 |
-| [`pyproject.toml`](pyproject.toml) | ruff linter 與 pytest 統一設定 |
+| [`pyproject.toml`](https://github.com/hank3160-ux/engineering-playbook-system/blob/main/pyproject.toml) | ruff linter 與 pytest 統一設定 |
 
 ---
 
