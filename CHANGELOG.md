@@ -11,6 +11,7 @@ Commit format follows [Conventional Commits](https://www.conventionalcommits.org
 
 ### Fix
 
+- remove non-docs links from index table, keep as plain code text
 - replace repo file links with GitHub URLs in index table
 - move contributing.md to contributing/index.md for correct directory URL
 - add navigation.indexes to mkdocs
