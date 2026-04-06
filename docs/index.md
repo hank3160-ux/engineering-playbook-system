@@ -91,11 +91,11 @@ engineering-playbook-system/
 | [`playbook/04-technical-decisions`](playbook/04-technical-decisions/) | 技術選型與決策背景 |
 | [`playbook/05-reliability-checklist`](playbook/05-reliability-checklist/) | 上線前可靠性驗證清單 |
 | [`playbook/adr/`](playbook/adr/) | 架構決策紀錄（ADR-001 ~ ADR-003） |
-| `demo/` | FastAPI MVP — ProcessTimeMiddleware、Exception Handler、pytest |
-| `template/` | 標準 Python 專案模板（三層架構，可直接複製） |
-| `scripts/check-secrets.sh` | Pre-commit 敏感資料掃描腳本 |
+| [`demo/`](https://github.com/hank3160-ux/engineering-playbook-system/tree/main/demo) | FastAPI MVP — ProcessTimeMiddleware、Exception Handler、pytest |
+| [`template/`](https://github.com/hank3160-ux/engineering-playbook-system/tree/main/template) | 標準 Python 專案模板（三層架構，可直接複製） |
+| [`scripts/check-secrets.sh`](https://github.com/hank3160-ux/engineering-playbook-system/blob/main/scripts/check-secrets.sh) | Pre-commit 敏感資料掃描腳本 |
 | [`contributing/`](contributing/) | 貢獻指南 — 如何使用 template/ 啟動新專案 |
-| `pyproject.toml` | ruff linter 與 pytest 統一設定 |
+| [`pyproject.toml`](https://github.com/hank3160-ux/engineering-playbook-system/blob/main/pyproject.toml) | ruff linter 與 pytest 統一設定 |
 
 ---
 
