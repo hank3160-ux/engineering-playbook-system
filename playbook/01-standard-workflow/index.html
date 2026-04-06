@@ -1294,18 +1294,11 @@
 </ul>
 <hr />
 <h2 id="2-git-flow">2. Git Flow 分支策略</h2>
-<pre class="mermaid"><code>gitGraph
-    commit id: "Initial"
-    branch develop
-    checkout develop
-    commit id: "Feature Start"
-    branch feature/logic-update
-    checkout feature/logic-update
-    commit
-    checkout develop
-    merge feature/logic-update
-    checkout main
-    merge develop tag: "v2.1.0"</code></pre>
+<pre class="mermaid"><code>graph LR
+    A[main] --&gt;|branch| B[develop]
+    B --&gt;|branch| C[feature/logic-update]
+    C --&gt;|merge| B
+    B --&gt;|merge + tag v2.1.0| A</code></pre>
 <h2 id="3-git-commit-conventional-commits">3. Git Commit 規範（Conventional Commits）</h2>
 <p>遵循 <a href="https://www.conventionalcommits.org/">Conventional Commits 1.0.0</a> 規範。</p>
 <h3 id="commit">Commit 格式</h3>
