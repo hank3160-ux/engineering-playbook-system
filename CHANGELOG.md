@@ -9,6 +9,10 @@ Commit format follows [Conventional Commits](https://www.conventionalcommits.org
 
 ## Unreleased
 
+### Feat
+
+- add dark/light mode toggle
+
 ### Fix
 
 - remove non-docs links from index table, keep as plain code text
