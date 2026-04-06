@@ -17,6 +17,7 @@ Commit format follows [Conventional Commits](https://www.conventionalcommits.org
 
 ### Fix
 
+- badge links in docs/index.md point to GitHub blob URLs
 - badge links for version and license
 - restore GitHub links for demo, template, scripts, pyproject
 - remove duplicate table header and restore missing playbook links
