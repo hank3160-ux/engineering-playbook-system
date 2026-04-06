@@ -18,6 +18,7 @@ Commit format follows [Conventional Commits](https://www.conventionalcommits.org
 
 ### Fix
 
+- replace gitGraph with simple flowchart for cleaner visualization
 - add mermaid js and fix superfences format for rendering
 - badge links in docs/index.md point to GitHub blob URLs
 - badge links for version and license
