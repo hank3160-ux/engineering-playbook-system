@@ -28,18 +28,11 @@
 ## 2. Git Flow 分支策略
 
 ```mermaid
-gitGraph
-    commit id: "Initial"
-    branch develop
-    checkout develop
-    commit id: "Feature Start"
-    branch feature/logic-update
-    checkout feature/logic-update
-    commit
-    checkout develop
-    merge feature/logic-update
-    checkout main
-    merge develop tag: "v2.1.0"
+graph LR
+    A[main] -->|branch| B[develop]
+    B -->|branch| C[feature/logic-update]
+    C -->|merge| B
+    B -->|merge + tag v2.1.0| A
 ```
 
 ## 3. Git Commit 規範（Conventional Commits）
