@@ -1,16 +1,22 @@
-/* Show "Dark Mode" / "Light Mode" label next to the toggle icon */
-.md-header__button[title*="dark"]::after {
-  content: " Dark Mode";
-  font-size: 0.7rem;
-  font-weight: 500;
+/* Show text label next to the dark/light mode toggle icon */
+label.md-header__button.md-icon[title="Switch to dark mode"]::after {
+  content: "Dark Mode";
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   vertical-align: middle;
+  margin-left: 4px;
   color: var(--md-primary-bg-color);
+  white-space: nowrap;
 }
 
-.md-header__button[title*="light"]::after {
-  content: " Light Mode";
-  font-size: 0.7rem;
-  font-weight: 500;
+label.md-header__button.md-icon[title="Switch to light mode"]::after {
+  content: "Light Mode";
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   vertical-align: middle;
+  margin-left: 4px;
   color: var(--md-primary-bg-color);
+  white-space: nowrap;
 }
