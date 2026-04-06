@@ -1,38 +1,47 @@
-/* Move palette toggle to the right of search bar and align icon + text inline */
+/* ── Move palette toggle to RIGHT of search bar ── */
 .md-header__inner {
   display: flex;
   align-items: center;
 }
 
-/* Push the palette form to after the search */
-form.md-header__option[data-md-component="palette"] {
-  order: 10;
+/* Search bar stays in natural position (order 0 by default) */
+.md-search {
+  order: 1;
+}
+
+/* Palette form moves AFTER search */
+.md-header__option[data-md-component="palette"] {
+  order: 2;
   display: flex;
   align-items: center;
   margin-left: 8px;
 }
 
-/* Make the label (icon + text) flex row */
+/* ── Icon + text on same line, vertically centered ── */
 label.md-header__button.md-icon[title="Switch to dark mode"],
 label.md-header__button.md-icon[title="Switch to light mode"] {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 0 8px;
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 6px;
+  padding: 0 6px;
+  height: 2.4rem;
   white-space: nowrap;
 }
 
-/* Text after the icon */
+/* Text label to the RIGHT of the icon */
 label.md-header__button.md-icon[title="Switch to dark mode"]::after {
   content: "Dark Mode";
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  color: var(--md-primary-bg-color);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1;
 }
 
 label.md-header__button.md-icon[title="Switch to light mode"]::after {
   content: "Light Mode";
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  color: var(--md-primary-bg-color);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1;
 }
