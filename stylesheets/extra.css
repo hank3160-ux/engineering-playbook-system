@@ -1,22 +1,38 @@
-/* Show text label next to the dark/light mode toggle icon */
+/* Move palette toggle to the right of search bar and align icon + text inline */
+.md-header__inner {
+  display: flex;
+  align-items: center;
+}
+
+/* Push the palette form to after the search */
+form.md-header__option[data-md-component="palette"] {
+  order: 10;
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+}
+
+/* Make the label (icon + text) flex row */
+label.md-header__button.md-icon[title="Switch to dark mode"],
+label.md-header__button.md-icon[title="Switch to light mode"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px;
+  white-space: nowrap;
+}
+
+/* Text after the icon */
 label.md-header__button.md-icon[title="Switch to dark mode"]::after {
   content: "Dark Mode";
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  vertical-align: middle;
-  margin-left: 4px;
   color: var(--md-primary-bg-color);
-  white-space: nowrap;
 }
 
 label.md-header__button.md-icon[title="Switch to light mode"]::after {
   content: "Light Mode";
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  vertical-align: middle;
-  margin-left: 4px;
   color: var(--md-primary-bg-color);
-  white-space: nowrap;
 }
