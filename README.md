@@ -9,8 +9,8 @@
 [![Python](https://img.shields.io/badge/python-3.11-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![codecov](https://img.shields.io/badge/coverage-tracked-brightgreen?logo=codecov)](https://github.com/hank3160-ux/engineering-playbook-system)
-[![Version](https://img.shields.io/badge/version-v2.0.0-6366f1)](CHANGELOG.md)
-[![License](https://img.shields.io/badge/license-MIT-22c55e)](LICENSE)
+[![Version](https://img.shields.io/badge/version-v2.0.0-6366f1)](https://github.com/hank3160-ux/engineering-playbook-system/blob/main/CHANGELOG.md)
+[![License](https://img.shields.io/badge/license-MIT-22c55e)](https://github.com/hank3160-ux/engineering-playbook-system/blob/main/LICENSE)
 
 ---
 
